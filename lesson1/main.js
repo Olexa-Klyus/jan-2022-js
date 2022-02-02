@@ -65,8 +65,8 @@
 // console.log(!!undefined);
 // console.log(!!null);
 
-let msg='hello';
-document.write('<div>'+msg+'</div>');
-//or
-document.write(`<div>${msg}</div>`)
-// виводимо на сторінку
+// let msg='hello';
+// document.write('<div>'+msg+'</div>');
+// //or
+// document.write(`<div>${msg}</div>`)
+// // виводимо на сторінку

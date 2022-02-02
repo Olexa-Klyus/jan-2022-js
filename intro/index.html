@@ -36,7 +36,7 @@
     //     console.log(textFromInput);
     //     if (textFromInput.includes ('koz')) {
     // //         alert ('Warning')
-    // //         todo create popup
+    //         // todo create popup
     //
     //         let div = document.createElement('div');
     //         document.body.append(div);
@@ -52,16 +52,16 @@
     //         videoplaver.play();
     //     });
 
-    // fetch('https://jsonplaceholder.typicode.com/users')
-    // .then(value => value.json())
-    // .then(value => {
-    //     console.log(value);
-    //     for (const user of value) {
-    //         let li=document.createElement ('li');
-    //         li.innerText=`${user.name}`;
-    //         document.body.append(li);
-    //     }
-    // })
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(value => value.json())
+    .then(value => {
+        console.log(value);
+        for (const user of value) {
+            let li=document.createElement ('li');
+            li.innerText=`${user.name}`;
+            document.body.append(li);
+        }
+    })
 
 </script>
 </body>
