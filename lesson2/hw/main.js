@@ -43,6 +43,15 @@
     a = -3;
     console.log(a !== 0 ? 'Вірно' : 'Невірно');
 }
+// Варіант if-else
+{
+    let a = 1;
+    if (a !== 0) {
+        console.log('Вірно');
+    } else {
+        console.log('Невірно');
+    }
+}
 // - Скласти розклад на тиждень за домопоги switch. Користувач вводить порядковий номер дня тижня і на екрані відображається інфа що заплановано на цей день.
 {
     let i = prompt('please enter the ordinal number of the day of the week from 1 to 7');
@@ -70,7 +79,6 @@
             break;
         default:
             document.write('<h2>you entered an unacceptable value</h2>');
-            break;
     }
 }
 // - Потрібно визначити Високосний рік чи ні. Високосні роки діляться націло на 4.
