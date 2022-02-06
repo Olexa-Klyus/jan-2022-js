@@ -52,22 +52,22 @@ let simpsons = [
 ];
 
 document.write(`<div>`);
-for (let i = 0; i < simpsons.length; i++) {
-    document.write(`NAME- ${simpsons[i].name}<br>`);
-    document.write(`SURNAME- ${simpsons[i].surname}<br>`);
-    document.write(`AGE- ${simpsons[i].age}<br>`);
-    document.write(`INFO- ${simpsons[i].info}<br>`);
-    document.write(`<img src="${simpsons[i].photo}"alt=""><br>`);
+for (let simpson of simpsons) {
+    document.write(`NAME- ${simpson.name}<br>`);
+    document.write(`SURNAME- ${simpson.surname}<br>`);
+    document.write(`AGE- ${simpson.age}<br>`);
+    document.write(`INFO- ${simpson.info}<br>`);
+    document.write(`<img src="${simpson.photo}"alt=""><br>`);
 }
 document.write(`</div>`);
 
 document.write(`<div>`);
-for (let i = 0; i < simpsons.length; i++) {
-    document.write(`<h2>NAME- ${simpsons[i].name}   `);
-    document.write(`SURNAME- ${simpsons[i].surname}. `);
-    document.write(` age is - ${simpsons[i].age}AGE .</h2>`);
-    document.write(`<p>INFO- ${simpsons[i].info}</p>>`);
-    document.write(`<img src="${simpsons[i].photo}"alt=""><br>`);
+for (let simpson of simpsons) {
+    document.write(`<h2>NAME- ${simpson.name}   `);
+    document.write(`SURNAME- ${simpson.surname}. `);
+    document.write(` age is - ${simpson.age}AGE .</h2>`);
+    document.write(`<p>INFO- ${simpson.info}</p>>`);
+    document.write(`<img src="${simpson.photo}"alt=""><br>`);
 }
 document.write(`</div>`);
 
@@ -93,11 +93,12 @@ let products = [
         image: 'https://yogiproducts.com/wp-content/uploads/2009/03/YT-US-CAR-RelaxedMind-C23-202201-V2-3DFront_withGlow-300DPI-1.png'
     },
 ];
-// <div>
-//     <div className="product-card">
-//         <h3 className="product-title">TITLE. Price - PRICE</h3>
-//         <img src="" alt="" className="product-image">
-//     </div>
 
-// </div>
-
+document.write(`<div>`);
+for (let product of products) {
+    document.write(`<div class="product-card">`);
+    document.write(`<h3 class="product-title">${product.title.toUpperCase()}. Price - ${product.price} </h3>`);
+    document.write(`<img class="product-image" src="${product.image}" alt="${product.title} image">`);
+    document.write(`</div>`);
+}
+document.write(`</div>`);
