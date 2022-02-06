@@ -606,7 +606,7 @@ document.write(`<div class="wrap">`);
 for (let i = 0; i < arr.length; i++) {
     if (i % 5 === 0) {
         document.write(`<div class="line-box">`);
-        for (let j = 0; j<5;j+=1) {
+        for (let j = 0; j<5 && i+j<arr.length;j+=1) {
         document.write(`<div class="post-card">`);
         document.write(`<h3>${arr[i+j].id} - ${arr[i+j].title}</h3>`);
         document.write(`<p>${arr[i+j].body}</p>`);

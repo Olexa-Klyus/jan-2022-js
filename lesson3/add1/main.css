@@ -1,0 +1,39 @@
+*{
+    margin: 0;
+    /*display: flex;*/
+}
+.users-wrap{
+    display: flex;
+    flex-direction: column;
+    }
+.users-box{
+    display: flex;
+}
+.user-block{
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    min-width: 500px;
+    padding: 5px;
+    background:silver;
+    margin: 5px;
+
+}
+.user-block>h2{
+    background: silver;
+}
+.user-block>h3{
+    margin: 10px 0;
+    font-weight: bold;
+    border-bottom: 1px solid blue;
+    background: silver;
+}
+.address-block{
+    display: flex;
+    flex-direction: column;
+    background: beige;
+}
+.address-block p{
+    margin-top: 3px;
+    font-size: 14pt;
+}
