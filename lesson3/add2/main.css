@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+}
+
+.wrap {
+    display: flex;
+    flex-direction: column;
+}
+
+.line-box {
+    display: flex;
+    height: 250px;
+}
+
+.post-card {
+    width: 250px;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    margin: 2px;
+    border: 1px solid darkblue;
+    padding: 5px;
+}
+
+.post-card > h3 {
+    background: silver;
+    height: 90px;
+    text-align: center;
+
+}
+
+.post-card > p {
+    /*margin-top: 5px;*/
+    font-size: 12pt;
+    text-align:justify;
+}
