@@ -90,7 +90,7 @@ let myArr3 = ['html', 34.5, 'css', 55, 15, false, 'js', 'mysql', {
 for (let elem3 of myArr3) {
     if (typeof elem3 === "number") {
         myArr3New[j] = elem3;
-        j+=1
+        j += 1
     }
 }
 // - Дано 2 масиви з рівною кількістю об'єктів.
@@ -128,16 +128,46 @@ let usersWithCities = [
     },
     // TO BE CONTINUED .....
 ]
-usersWithCities=[];
+usersWithCities = [];
+for (let i = 0; i < usersWithId.length; i++) {
+    for (let k = 0; k < citiesWithId.length; k++) {
+        if (usersWithId[i].id === citiesWithId[k].user_id) {
+            usersWithCities[i] = usersWithId[i];
+            usersWithCities[i].address = citiesWithId[k];
+        }
+    }
+}
 
-
-
-//
-//         - Взяти масив з 10 чисел або створити його. Вивести в консоль тільки ті елементи, значення яких є парними.
-//
+// - Взяти масив з 10 чисел або створити його. Вивести в консоль тільки ті елементи, значення яких є парними.
+let myArr5 = [];
+for (let i = 0; i < 10; i++) {
+    myArr5[i] = Math.floor(Math.random() * 20 + 1);
+    if (myArr5[i] % 2 === 0) {
+        console.log(myArr5[i]);
+    }
+}
 // - Взяти масив з 10 чисел або створити його. Створити 2й порожній масив. За допомогою будь-якого циклу скопіювати значення одного масиву в інший.
-
-
+let myArr6 = [];
+for (let i = 0; i < myArr5.length; i++) {
+    myArr6[i] = myArr5[i];
+}
+console.log(myArr6)
 // - Дано масив: [ 'a', 'b', 'c'] . За допомогою циклу for зібрати всі букви в слово.
-// - Дано масив: [ 'a', 'b', 'c'] . За допомогою циклу while зібрати всі букви в слово.
 // - Дано масив: [ 'a', 'b', 'c'] . За допомогою циклу for of зібрати всі букви в слово.
+let myArr7 = ['a', 'b', 'c'];
+let word = '';
+for (let i = 0; i < myArr7.length; i++) {
+    word += myArr7[i];
+}
+// - Дано масив: [ 'a', 'b', 'c'] . За допомогою циклу while зібрати всі букви в слово.
+word = '';
+let i = 0;
+while (i < myArr7.length) {
+    word += myArr7[i];
+    i += 1
+}
+// - Дано масив: [ 'a', 'b', 'c'] . За допомогою циклу for of зібрати всі букви в слово.
+word = '';
+for (let element of myArr7) {
+    word += element;
+}
