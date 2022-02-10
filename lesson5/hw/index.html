@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HomeWork 5</title>
+</head>
+<body>
+
+<script>
+    let users = [
+        {id: 1, name: 'vasya', age: 31},
+        {id: 2, name: 'petya', age: 30},
+        {id: 3, name: 'kolya', age: 29},
+        {id: 4, name: 'olya', age: 28},
+        {id: 5, name: 'max', age: 30},
+    ];
+    arrExample = [1, 2, 'sd', true, 456, false, -35];
+
+    // площа прямокутника
+    let rectangleArea = (sideA, sideB) => sideA * sideB;
+    console.log(rectangleArea(2, 3));
+    document.write(`Площа прямокутника - ${rectangleArea(2,3)}<br>`);
+
+    //площа кола
+    let squareArea = (radius) => Math.PI * Math.pow(radius, 2);
+    console.log(squareArea(5));
+    document.write(`Площа круга - ${squareArea(5)}<br>`);
+
+    //площа циліндра
+    let cylinderArea = (radius, height) => 2 * Math.PI * Math.pow(radius, 2) + height * 2 * Math.PI * radius;
+    console.log(cylinderArea(1, 1));
+    document.write(`Площа циліндра - ${cylinderArea(1, 1)}<br>`);
+
+    // - створити функцію яка приймає масив та виводить кожен його елемент
+    let arrWriteItem = (arr) => {
+        for (let arrElement of arr) {
+            console.log(arrElement);
+            document.write(arrElement+',  ');
+        }
+    }
+    arrWriteItem(arrExample);
+
+    // - створити функцію яка  створює параграф з текстом. Текст задати через аргумент
+    let textWrite = (strValue) => document.write(`<p>${strValue}</p>`);
+    textWrite('hello');
+
+    // - створити функцію яка  створює ul з трьома елементами li. Текст li задати через аргумент всім однаковий
+    let createUl = (liTxt) => {
+        document.write(`<ul>`);
+        document.write(`<li>${liTxt}`);
+        document.write(`<li>${liTxt}`);
+        document.write(`<li>${liTxt}`);
+        document.write(`</ul>`);
+    }
+    createUl('лі_текст');
+
+    // - створити функцію яка  створює ul з трьома елементами li. Текст li задати через аргумент всім однаковий. Кількість li визначається другим аргументом, який є числовим (тут використовувати цикл)
+    let createUlnLi = (liTxt, nLi) => {
+        document.write(`<ul>`);
+        for (let i = 0; i < nLi; i++) {
+            document.write(`<li>${liTxt}`);
+        }
+        document.write(`</ul>`);
+    }
+    createUlnLi('лі_текст_2', 5);
+
+    // - створити функцію яка приймає масив примітивних елементів (числа,стрінги,булеві), та будує для них список
+    let createUlArr = (arr) => {
+        document.write(`<ul>`);
+        for (let i = 0; i < arr.length; i++) {
+            document.write(`<li>${arr[i]}`);
+        }
+        document.write(`</ul>`);
+    }
+    createUlArr(arrExample);
+
+    // - створити функцію яка приймає масив об'єктів з наступними полями id,name,age , та виводить їх в документ. Для кожного об'єкту окремий блок.
+    let createDivArr = (objArr) => {
+        for (let objArrElement of objArr) {
+            document.write(`<div style = 'margin :0 0 10px 0; background: silver'>`);
+            for (let objArrElementKey in objArrElement) {
+                document.write(`${objArrElementKey} : `);
+                document.write(`${objArrElement[objArrElementKey]}<br>`);
+            }
+            document.write(`</div>`);
+        }
+    }
+    createDivArr(users);
+
+</script>
+</body>
+</html>
