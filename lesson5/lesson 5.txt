@@ -1,0 +1,114 @@
+прості типи передають у функцію значення (клон значення), а масиви і обєкти - вказівник на масив чи обєкт.
+при зміні переданого обєкта в тілі функції змінюється вихідний обєкт
+через typeof можна перевірити чи передано обєкт
+тип обєкта називається - рефенціальний тип
+
+HOISTING - ВИНУРЕННЯ ФУНКЦІЙ
+
+function calculator (a,b) {
+	return a+b;
+	}
+можна записати 
+let calculator = function (a,b) {
+	return a+b;
+	};
+Різниця в тому що hoisting let-ки не витягує, оголошувати треба до використання
+
+СТРІЛОЧНА ФУНКЦІЯ
+
+а можна те саме записати стрілкою замість слова function
+let calculator =(a,b) => {return a+b};
+якщо тільки одна дія, можна скорочено записати без дужок і return
+let calculator =(a,b) =>a+b;
+
+якщо більше одної дії- дужки обовязково, наприклад
+let calculator =(a,b) => {
+	let result= a+b;
+	consol.log(result);
+	return result;
+	}
+
+САМОВИКЛИКАЮЧА ФУНКЦІЯ
+
+анонімна функція без назви, в круглих дужках
+(function (a,b) {
+	consol.log ('вивести щось',a,b);
+	} );
+щоб ту дурню викликати, потрібно в ній же прописати  дужки(), тобто виклик самої себе
+(function (a,b) {
+	console.log ('вивести щось',a,b);
+	} () );
+де використовується - в PHP кли зєднується з JS, є бібліотека jsQuery,
+в PHP визначення стрінги йде через $, а в jsQuery через $ визначення обєкта
+тому конфлікт виникає, тоді використовуємо цю функцію
+наприклад 
+<button onclick ="(function(){
+	allert ('щось друкуємо');
+	} () )">ExampleBTN
+</button>
+
+CALLBACKS Functions
+
+function example (a,b,fn){
+	console.log(a);
+	console.log(b);
+	console.log(fn);
+	}
+	
+в аргумент fn можна передати якусь функцію (без назви)
+example (a,b,function(){console.log('hello')});
+
+і виведеться опис функції
+для того щоб ця функція відпрацювала, потрібно її виклати у \
+самій функцїї двома дужками
+function example (a,b,fn){
+	console.log(a);
+	console.log(b);
+	fn();
+	}
+	
+або описати функцію перед передаванням і передати як обєкт
+function hello = (){console.log('hello')};
+example (a,b,hello);
+
+можемо використовувати наприклад викликаючи фільтрування елементів масиву users
+console.log(users.filter(functon(user) {
+	return !user.status;
+	}));
+
+Приклад використання callback функції
+
+function calculatorCallBack(num1, num2, action) {
+	if (action === '+'){
+	return num1+num2;
+	}
+}
+calculatorCallBack(2,3,'+');
+
+а можна записати
+function calculatorCallBack(num1, num2, fn(num1,num2,fn) {
+	return fn(num1,num2);
+	}
+
+і викликати, описавши у виклику функцію, яка передається і її дію
+calculatorCallBack(2,3,function(num1,num2 {return a+b});
+
+РЕКУРСІЯ
+function recursion(){
+	consol.log ('hello');
+	recursion();
+	}
+	
+використовується для screping сайтів
+використовується, наприклад щоб обійти багаторівневий обєкт
+щоб зупинити, поставити if з return
+як зробити цикл без використання операторів циклу -
+
+functon cycle (i){
+	console.log(i);
+	i+=1;
+	if (i>10) {
+		return
+		}
+	cycle(i);
+	}
