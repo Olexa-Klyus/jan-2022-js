@@ -20,15 +20,14 @@
     // - Даны два целых числа A и В . Выведите все числа от A до B включительно,
     // в порядке возрастания, если A < B, или в порядке убывания в противном случае.
     numbersBetweenA_B = (a, b) => {
+        document.write(`<br>числа від ${a} до ${b} : `);
         if (a < b) {
-            document.write(`<br>числа від ${a} до ${b} : `);
             for (let i = a; i <= b; i += 1) document.write(i + ', ');
         } else {
-            document.write(`<br>числа від ${b} до ${a} : `);
-            for (let i = b; i <= a; i += 1) document.write(i + ', ');
+            for (let i = a; i >= b; i -= 1) document.write(i + ', ');
         }
     }
-    numbersBetweenA_B(25, -25);
+    numbersBetweenA_B(10, 5);
 
     //   -   функція Приймає масив та число "i", та міняє місцями об`єкт який знаходиться в індексі "i" на "i+1"
     // EXAMPLE:
