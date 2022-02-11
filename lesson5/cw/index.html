@@ -12,11 +12,9 @@
     // - створити функцію яка приймає три числа та виводить найменьше. (Без Math.min!)
     let minNumber = (a, b, c) => {
         let minValue = c;
-        if (a < b && a < c) {
-            minValue = a;
-        } else if (b < a && b < c) {
-            minValue = b;
-        }
+        if (a < b && a < c) minValue = a;
+        else if (b < a && b < c) minValue = b;
+
         console.log('найменше число з трьох : ' + minValue);
         document.write(`найменше число з трьох : ${minValue}<br>`);
         return minValue;
@@ -26,11 +24,9 @@
     // - створити функцію яка приймає три числа та виводить найбільше. (Без Math.max!)
     let maxNumber = (a, b, c) => {
         let maxValue = c;
-        if (a > b && a > c) {
-            maxValue = a;
-        } else if (b > a && b > c) {
-            maxValue = b;
-        }
+        if (a > b && a > c) maxValue = a;
+        else if (b > a && b > c) maxValue = b;
+
         console.log('найбільше число з трьох : ' + maxValue);
         document.write(`найбільше число з трьох : ${maxValue}<br>`);
         return maxValue;
@@ -42,11 +38,8 @@
     // - створити функцію яка повертає найбільше число з масиву
     let maxArrNumber = (arr) => {
         let maxValue = arr[0];
-        for (let i = 1; i < arr.length; i++) {
-            if (maxValue < arr[i]) {
-                maxValue = arr[i]
-            }
-        }
+        for (let i = 1; i < arr.length; i++) if (maxValue < arr[i]) maxValue = arr[i]
+
         console.log('найбільше число в масиві : ' + maxValue);
         document.write(`найбільше число в масиві : ${maxValue}<br>`);
         return maxValue;
@@ -56,11 +49,8 @@
     // - створити функцію яка повертає найменьше число з масиву
     let minArrNumber = (arr) => {
         let minValue = arr[0];
-        for (let i = 1; i < arr.length; i++) {
-            if (minValue > arr[i]) {
-                minValue = arr[i]
-            }
-        }
+        for (let i = 1; i < arr.length; i++) if (minValue > arr[i]) minValue = arr[i]
+
         console.log('найменше число в масиві : ' + minValue);
         document.write(`найменше число в масиві : ${minValue}<br>`);
         return minValue;
@@ -104,27 +94,30 @@
 
     // - створити функцію яка заповнює масив рандомними числами
 
-    let randomArr = (arr) => {
-        for (let i = 0; i < 20; i += 1) arr[i] = Math.round(Math.random() * 100);
+    let randomArr = (arrlenght) => {
+        let arr=[];
+        for (let i = 0; i < arrlenght; i += 1) arr[i] = Math.round(Math.random() * 100);
+        return arr;
     }
-    randomArr(arrayExample);
-    console.log(arrayExample);
+    console.log(randomArr(20));
 
     // - створити функцію яка заповнює масив рандомними числами в діапазоні від 0 до limit. limit - аргумент, який характеризує кінцеве значення діапазону.
-    let randomArrLimit = (arr, limit) => {
-        for (let i = 0; i < 20; i += 1) arr[i] = Math.round(Math.random() * limit);
+    let randomArrLimit = (arrlenght, limit) => {
+        let arr=[];
+        for (let i = 0; i < arrlenght ; i += 1) arr[i] = Math.round(Math.random() * limit);
+        return arr;
     }
-    randomArrLimit(arrayExample, 30);
-    console.log(arrayExample);
+    console.log(randomArrLimit(10, 30));
 
     // - Функція приймає масив та робить з нього новий масив в зворотньому порядку. [1,2,3] -> [3, 2, 1].
 
-    let reverseArr = (arr)=>{
-        let newArr=[];
-        for (let i = 0; i < arr.length; i++) newArr[i]=arr[arr.length-i-1];
+    let reverseArr = (arr) => {
+        let newArr = [];
+        for (let i = 0; i < arr.length; i++) newArr[i] = arr[arr.length - i - 1];
         return newArr;
     }
-    console.log('новий reverse масив : '+ reverseArr(arrayExample));
+    console.log('старий масив : ' + (arrayExample));
+    console.log('новий reverse масив : ' + reverseArr(arrayExample));
 
 
 </script>
