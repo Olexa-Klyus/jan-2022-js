@@ -119,12 +119,12 @@
 
     // - Функція приймає масив та робить з нього новий масив в зворотньому порядку. [1,2,3] -> [3, 2, 1].
 
-    let invertArr = (arr)=>{
+    let reverseArr = (arr)=>{
         let newArr=[];
         for (let i = 0; i < arr.length; i++) newArr[i]=arr[arr.length-i-1];
         return newArr;
     }
-    console.log('новий масив : '+ invertArr(arrayExample));
+    console.log('новий reverse масив : '+ reverseArr(arrayExample));
 
 
 </script>

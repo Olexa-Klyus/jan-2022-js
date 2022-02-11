@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Add Lesson 5</title>
+</head>
+<body>
+<script>
+
+    // - Є натуральне число n. Виведіть всі числа от 1 до n.
+    let naturalValueToN = (n) => {
+        document.write(`числа від 1 до ${n} : `);
+        for (let i = 1; i <= n; i++) document.write(`${i}, `);
+    }
+    naturalValueToN(10);
+
+    // - Даны два целых числа A и В . Выведите все числа от A до B включительно,
+    // в порядке возрастания, если A < B, или в порядке убывания в противном случае.
+    numbersBetweenA_B = (a, b) => {
+        if (a < b) {
+            document.write(`<br>числа від ${a} до ${b} : `);
+            for (let i = a; i <= b; i += 1) document.write(i + ', ');
+        } else {
+            document.write(`<br>числа від ${b} до ${a} : `);
+            for (let i = b; i <= a; i += 1) document.write(i + ', ');
+        }
+    }
+    numbersBetweenA_B(25, -25);
+
+    //   -   функція Приймає масив та число "i", та міняє місцями об`єкт який знаходиться в індексі "i" на "i+1"
+    // EXAMPLE:
+    // foo([9,8,0,4], 0) // ==> [ 8, 9, 0, 4 ]
+    // foo([9,8,0,4], 1) // ==> [ 9 ,0, 8, 4 ]
+    // foo([9,8,0,4], 2) // ==> [ 9, 8, 4, 0 ]
+
+    let swapElemInArr = (arr, index) => {
+        [arr[index], arr[index + 1]] = [arr[index + 1], arr[index]];
+        return arr;
+    }
+    let arrExample = [0, 1, 3, 56, 0, 3, -2, 0, 55, 1, 0];
+    console.log('до виконання ' + ([] + arrExample));
+    document.write('<br>до виконання ' + ([] + arrExample) + '<br>');
+    let result = swapElemInArr(arrExample, 3);
+    console.log('після виконання ' + result);
+    document.write('після виконання ' + result)
+
+    // - Сворити функцію яка буде переносити елементи з значенням 0 у кінець маисву. Зберігаючи при цьому порядок не нульових значень.
+    //     Двожина масиву від 2 до 100
+    // EXAMPLE:
+    //     [1,0,6,0,3] => [1,6,3,0,0]
+    //     [0,1,2,3,4] => [1,2,3,4,0]
+    //     [0,0,1,0]   => [1,0,0,0]
+    let sortArr = (arr) => {
+        let arrNew = [];
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i] !== 0) arrNew[arrNew.length] = arr[i];
+        }
+        for (let j = arrNew.length; j < arr.length; j += 1) arrNew[j] = 0;
+        return arrNew;
+    }
+    console.log('до виконання ' + ([] + arrExample));
+    document.write('<br>до виконання ' + ([] + arrExample) + '<br>');
+    result = sortArr(arrExample);
+    console.log('після виконання ' + result);
+    document.write('після виконання ' + result)
+
+</script>
+</body>
+</html>
