@@ -122,21 +122,65 @@
         // console.log(index,item);
         return item % 2 === 0 && index % 2 !== 0;
     })
-    console.log(filterArray);
+    console.log('фільтр непарний індекс  -' + filterArray);
 
     // Array.prototype.map - повертає інший новий масив, в якому елементи змінені згідно опису всередині
     let mapMetod = numbers.map((value) => value * 2)
-    console.log(mapMetod);
-    console.log(numbers);
+    console.log('map  -' + mapMetod);
 
     // Array.prototype.sort -треба вказати напрямок - current-next
-    console.log(users.sort((current,next)=>{
-        return current.age-next.age
+    console.log(users.sort((current, next) => {
+        return current.age - next.age
     }))
     // сортуємо по довжині імені в сторону зростання
-    console.log(users.sort((cur,next)=>cur.name.length-next.name.length))
+    console.log(users.sort((cur, next) => cur.name.length - next.name.length))
+    // сортуємо по двох критеріях якщо по першому критерію нуль повертається тобто рівне, тоді по другому
+    console.log(users.sort((cur, next) => {
+        if (cur.name.length - next.name.length === 0) {
+            return cur.age - next.age
+        } else {
+            return cur.name.length - next.name.length
+        }
+    }));
 
+    // Array.prototype.find - по критерію знайти 1й обєкт
+    console.log(users.find(value => value.status));
 
+    // Array.prototype.every - перевірити чи тип поля name кожного елемента в масиві наприклад стрінг.
+    console.log(users.every(value => typeof value.name === 'string'));
+
+    // Array.prototype.some - перевірити чи тип поля status хоч би одного елемента в масиві true
+    console.log(users.some(value => typeof value.status));
+
+    // Array.prototype.flat - переводить багатовимірний масив в одновимірний з глибиною n.
+    let matrics = [[1, 2, 3], [5, 6, 7, 8, ['a', 'b']]];
+    console.log(matrics.flat(2));
+
+    // Array.prototype.flatMap - переводить багатовимірний масив в одновимірний
+    // і дозволяє його змінити
+    console.log(matrics.flatMap(value => value + 1));
+
+    // Array.prototype.reduse - дозволяє зменшити кількість елементів в масиві
+    // і дозволяє його змінити і закинути в корзину в кінці
+    let arr = [11, 12, 14];
+    console.log(arr.reduce((previousValue, currentValue) => {
+        console.log(previousValue, currentValue);
+        return previousValue + currentValue
+    }, {}))
+    // як застосувати, наприклад, з масиву зробити об`єкт з назвою поля як user.name
+    console.log(users.reduce((basket, user) => {
+        basket[user.name] = user;
+        return basket;
+    }, {}))
+    // або в корзину в дві комірки які будуть масивами з true і False
+    console.log(users.reduce((basket, user) => {
+        if (user.status) {
+            basket.statusTrue.push(user);
+        } else {
+            basket.statusFalse.push(user);
+        }
+        return basket;
+    }, {statusTrue: [], statusFalse: []}));
 
 
 </script>
