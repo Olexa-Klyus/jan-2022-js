@@ -127,6 +127,10 @@
     // Array.prototype.map - повертає інший новий масив, в якому елементи змінені згідно опису всередині
     let mapMetod = numbers.map((value) => value * 2)
     console.log('map  -' + mapMetod);
+    // інший приклад
+    console.log(users.map((user) => {
+        return {name: user.name, age: user.age};
+    }));
 
     // Array.prototype.sort -треба вказати напрямок - current-next
     console.log(users.sort((current, next) => {
