@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<script>
+    // string.prototype.toUpperCase()
+    let s='okten;'
+    let upperCase=s.toUpperCase();
+    console.log(s.includes('ten'));
+
+    console.log(s.indexOf('e'));
+    console.log(s.replace('e', '!'));
+
+    console.log(s.replaceAll('-',''));
+    console.log(s.split('-'));
+
+
+
+    <!--методи масивів з callback function-->
+    let numbers = [11, 22, 33, 44, 55, 66, 77, 88, 99, 100];
+    // масив.forEach - ця функція може вивести масив і можна в неї вложити callback для зміни всіх елементів
+    // numbers.forEach(function (value){
+    //     console.log(value*2);
+    // })
+    // масив.filter - в цьому прикладі виводимо парні елементи з непарним індексом
+    // let filterArray= numbers.filter((item,index)=>{
+    //     // console.log(index,item);
+    //     return item % 2 === 0 && index % 2 !== 0;
+    // })
+    // console.log(filterArray);
+    // масив.map - повертає інший масив, в якому елементи змінені згідно опису всередині
+
+    let mapMetod = numbers.map((value) => {
+        return value*2;
+    })
+    console.log(mapMetod);
+
+</script>
+
+</body>
+</html>
