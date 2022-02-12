@@ -10,89 +10,134 @@
 <script>
 
 
-    // Стрінги - методи(функції)
+    // // Стрінги - методи(функції)
     let s = 'Okten';
-    // string.prototype.concat() - з'єднує масив str значень між собою (заміна +, використовується рідко)
-    console.log(s.concat(' School'));
-
-    // Всі - повертають нову str
-
-    // string.prototype.toUpperCase() - str до верхнього або нижнього регістру
-    // string.prototype.toLoverCase()
-    console.log(s.toUpperCase());
-    console.log(s.toLowerCase());
-
-    // string.prototype.startsWith() - перевірка, чи починається str з секвенції символів
-    // string.prototype.endsWith() - перевірка, чи закінчується str на секвенцію символів
-    // string.prototype.includes() - перевірка, чи включає s цю секвенцію символів
-    // повертають bull
-    console.log(s.startsWith('Okt'));
-    console.log(s.endsWith('en'));
-    console.log(s.includes('ten'));
-
-    // string.prototype.charAt()- повертає символ, який є в індексі
-    // string.prototype.indexOf()- повертає індекс символа перший від початку
-    // string.prototype.lastIndexOf()- повертає індекс символа першого з кінця
-    console.log(s.charAt(1));
-    console.log(s.indexOf('e'));
-    console.log(s.lastIndexOf('e'));
-
-    // string.prototype.replace() - повертає str із заміненим символом на
-    // string.prototype.replaceAll() - замінює всі символи на
-    // string.prototype.split()-
-    console.log(s.replace('e', '!'));
-    let phone = '+(380) 98-123-12-12';
-    console.log(phone
-        .replaceAll('(', '')
-        .replaceAll('+38', '')
-        .replaceAll(' ', '')
-        .replaceAll(')', '')
-        .replaceAll('-', ''));
-    console.log(phone);
-
-    // string.prototype.substring((2,5)) -виріже і поверне сегмент з індексу 1 включно до індексу 2 не включно
-    console.log(s.substring(2, 5));
-
-    // string.prototype.split (' ') - розрізає текст на елементи масиву по символу, з назвою delimiter
-    console.log(s.split('e'));
-
-    // МАСИВИ методи (функції)
-    // -------------------------------------------------------------------------------
+    // // string.prototype.concat() - з'єднує масив str значень між собою (заміна +, використовується рідко)
+    // console.log(s.concat(' School'));
+    //
+    // // Всі - повертають нову str
+    //
+    // // string.prototype.toUpperCase() - str до верхнього або нижнього регістру
+    // // string.prototype.toLoverCase()
+    // console.log(s.toUpperCase());
+    // console.log(s.toLowerCase());
+    //
+    // // string.prototype.startsWith() - перевірка, чи починається str з секвенції символів
+    // // string.prototype.endsWith() - перевірка, чи закінчується str на секвенцію символів
+    // // string.prototype.includes() - перевірка, чи включає s цю секвенцію символів
+    // // повертають bull
+    // console.log(s.startsWith('Okt'));
+    // console.log(s.endsWith('en'));
+    // console.log(s.includes('ten'));
+    //
+    // // string.prototype.charAt()- повертає символ, який є в індексі
+    // // string.prototype.indexOf()- повертає індекс символа перший від початку
+    // // string.prototype.lastIndexOf()- повертає індекс символа першого з кінця
+    // console.log(s.charAt(1));
+    // console.log(s.indexOf('e'));
+    // console.log(s.lastIndexOf('e'));
+    //
+    // // string.prototype.replace() - повертає str із заміненим символом на
+    // // string.prototype.replaceAll() - замінює всі символи на
+    // // string.prototype.split()-
+    // console.log(s.replace('e', '!'));
+    // let phone = '+(380) 98-123-12-12';
+    // console.log(phone
+    //     .replaceAll('(', '')
+    //     .replaceAll('+38', '')
+    //     .replaceAll(' ', '')
+    //     .replaceAll(')', '')
+    //     .replaceAll('-', ''));
+    // console.log(phone);
+    //
+    // // string.prototype.substring((2,5)) -виріже і поверне сегмент з індексу 1 включно до індексу 2 не включно
+    // console.log(s.substring(2, 5));
+    //
+    // // string.prototype.split (' ') - розрізає текст на елементи масиву по символу, з назвою delimiter
+    // console.log(s.split('e'));
+    //
+    // // МАСИВИ методи (функції)
+    // // -------------------------------------------------------------------------------
     let numbers = [11, 22, 33, 44, 55, 66, 77, 88, 99, 100];
-    console.log(Array.isArray(numbers));  //повертає true, якщо об`єкт є масивом
+    // console.log(Array.isArray(numbers));  //повертає true, якщо об`єкт є масивом
+    //
+    // // Array.prototype.push() - додає в кінець значення
+    // // Array.prototype.unshift() - додає на початок значення
+    // numbers.push(200);
+    // numbers.unshift(2);
+    // console.log(numbers);
+    //
+    // // Array.prototype.pop() - вирізає з кінця значення і повертає його
+    // // Array.prototype.unshift() - вирізає з  початку значення і повертає його
+    // numbers.pop();
+    // numbers.shift();
+    // console.log(numbers);
+    //
+    // // Array.prototype.join("-")- ліпить значення масиву до купи через символ(якщо треба) і повертає стрінгою
+    // console.log(numbers.join('-'));
+    // // Array.prototype.concat() - з'єднує два масиви
+    // console.log(numbers.concat(['a','b','c']));
+    // // Array.prototype.reverse - змінює вихідний масив
+    // console.log(numbers.reverse());
+    // // Array.prototype.indexOf() - повертає перший індекс значення або -1 якщо немає такого значення
+    // console.log(numbers.indexOf(77));
+    // // Array.prototype.splice -вирізає від 2, 3 елементи, повертає вирізані, вставляє замість них інші-250і350
+    // console.log(numbers.splice(2,3,250,350));
+    // // Array.prototype.includes - повертає true якщо елемент 250 є в масиві
+    // console.log(numbers.includes(250));
 
-    // Array.prototype.push() - додає в кінець значення
-    // Array.prototype.unshift() - додає на початок значення
-    numbers.push(200);
-    numbers.unshift(2);
-    console.log(numbers);
-
-    // Array.prototype.pop() - вирізає з кінця значення і повертає його
-    // Array.prototype.unshift() - вирізає з  початку значення і повертає його
-    numbers.pop();
-    numbers.shift();
-    console.log(numbers);
-
-    // Array.prototype.join("-")- ліпить масив до купи через символ(якщо треба) і повертає стрінгою
-    console.log(numbers.join('-'));
+    let users = [
+        {name: 'vasya', age: 41, status: false},
+        {name: 'petya', age: 30, status: true},
+        {name: 'kolya', age: 29, status: true},
+        {name: 'olya', age: 28, status: false},
+        {name: 'max', age: 30, status: true},
+        {name: 'anya', age: 31, status: false},
+        {name: 'oleg', age: 28, status: false},
+        {name: 'andrey', age: 29, status: true},
+        {name: 'masha', age: 30, status: true},
+        {name: 'olya', age: 31, status: false},
+        {name: 'max', age: 31, status: true}
+    ];
 
     // <!--методи масивів з callback function-->
-    // масив.forEach - ця функція може вивести масив і можна в неї вложити callback для зміни всіх елементів
-    // numbers.forEach(function (value){
-    //     console.log(value*2);
-    // })
-    // масив.filter - в цьому прикладі виводимо парні елементи з непарним індексом
-    // let filterArray= numbers.filter((item,index)=>{
-    //     // console.log(index,item);
-    //     return item % 2 === 0 && index % 2 !== 0;
-    // })
-    // console.log(filterArray);
-    // масив.map - повертає інший масив, в якому елементи змінені згідно опису всередині
-
-    let mapMetod = numbers.map((value) => {
-        return value * 2;
+    // Array.prototype.forEach - ця функція може вивести масив і можна в неї вложити callback
+    // для дій з кожним елементом або/і індексом. початковий масив не змінюється
+    // щось типу циклу
+    numbers.forEach(function (number, index) {
+        number = number * 2 + 10;
+        console.log(number, index)
     })
+    console.log(numbers);
+    // короткий запис
+    numbers.forEach((val, index) => console.log(val * 2 + 10, index));
+
+    // Array.prototype.filter() виводимо старше 29 років. Короткий запис функції
+    let filter = users.filter(value => value.age > 29);
+    console.log(filter);
+    console.log(users);
+
+    // в цьому прикладі виводимо парні елементи з непарним індексом з масиву numbers
+    let filterArray = numbers.filter((item, index) => {
+        // console.log(index,item);
+        return item % 2 === 0 && index % 2 !== 0;
+    })
+    console.log(filterArray);
+
+    // Array.prototype.map - повертає інший новий масив, в якому елементи змінені згідно опису всередині
+    let mapMetod = numbers.map((value) => value * 2)
     console.log(mapMetod);
+    console.log(numbers);
+
+    // Array.prototype.sort -треба вказати напрямок - current-next
+    console.log(users.sort((current,next)=>{
+        return current.age-next.age
+    }))
+    // сортуємо по довжині імені в сторону зростання
+    console.log(users.sort((cur,next)=>cur.name.length-next.name.length))
+
+
+
 
 </script>
 
