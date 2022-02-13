@@ -131,6 +131,21 @@
     // - Напишіть функцію cutString(str, n), яка видаляє зайві слова з рядка str, залишивши у ній n слів.
     //     let str = "Сила тяжести приложена к центру масс тела";
     // document.writeln(cutString(str, 5)) // 'Сила тяжести приложена к центру'
+    let cutString2 = ((str, n) => {
+        let arrWords = str.split(' ');
+        let cutStr = '';
+        arrWords.forEach((value, index) => {
+            if (index < n) {
+                cutStr = cutStr.concat(value);
+            }
+            if (index < n - 1) {
+                cutStr = cutStr.concat(' ');
+            }
+        })
+        return cutStr;
+    })
+    let str2 = "Сила тяжести приложена к центру масс тела";
+    console.log(cutString2(str2, 5));
 
 
 </script>
