@@ -7,68 +7,162 @@
 <body>
 
 <script>
-// add fields
-let user = {
+    // add fields
+    let user = {
 // для унікальних id є бібліотека UUID(),яку потрібно знайти і з якої можна брати унікальні id, але не дуже звикати
-    // id:UUID();
-    id:1,
-    userName:'Oleg'
-}
-// додати поле в обєкт можна двома варіантами:
-user.userSurname='Viktorovych';
-user["age"]=25;
-console.log(user);
-// краще другий варіант юзати він динамічніший
-// приклад створення обєкта:
-let obj={};
-let fields=['id','userName','age'];
-for (const field of fields) {
-    obj[field]="123";
-}
-console.log(obj);
-let obj2={};
-let values=[1,2,3];
-for (let i = 0; i < values.length; i++) {
-    obj2[fields[i]]=values[i];
-}
-console.log(obj2);
-// щоб видалити поле
-delete obj2.id;
-console.log(obj2);
-
-// персональна внутрішня функція для цього обєкта
-let user2 = {
-    userName:'Oleg',
-    userSurname:'Viktor',
-    greeting:function (){
-        return `my name is ${user2.userName} and my surname is ${user2.userSurname}`
+        // id:UUID();
+        id: 1,
+        userName: 'Oleg'
     }
-}
-console.log(user2.greeting());
-
-// можна підставити this замість user
-// стрілочною функцією не можна
-let user3 = {
-    userName:'Oleg',
-    userSurname:'Viktor',
-    greeting:function (){
-        return `my name is ${this.userName} and my surname is ${this.userSurname}`
+    // додати поле в обєкт можна двома варіантами:
+    user.userSurname = 'Viktorovych';
+    user["age"] = 25;
+    console.log(user);
+    // краще другий варіант юзати він динамічніший
+    // приклад створення обєкта:
+    let obj = {};
+    let fields = ['id', 'userName', 'age'];
+    for (const field of fields) {
+        obj[field] = "123";
     }
-}
-console.log(user3.greeting());
-
-// замикання - це можливість фунції мати внутрішню функцію, яка зберігає посилання на зовнішню змінну
-function outer(){
-    let i=1;
-    function iner(){
-        i+=1;
-        return i;
+    console.log(obj);
+    let obj2 = {};
+    let values = [1, 2, 3];
+    for (let i = 0; i < values.length; i++) {
+        obj2[fields[i]] = values[i];
     }
-    return iner();
-}
-let clos=outer();
-// console.log(clos());
-console.log(outer()());
+    console.log(obj2);
+    // щоб видалити поле
+    delete obj2.id;
+    console.log(obj2);
+
+    // персональна внутрішня функція для цього обєкта
+    let user2 = {
+        userName: 'Oleg',
+        userSurname: 'Viktor',
+        greeting: function () {
+            return `my name is ${user2.userName} and my surname is ${user2.userSurname}`
+        }
+    }
+    console.log(user2.greeting());
+
+    // можна підставити this замість user
+    // стрілочною функцією не можна
+    let user3 = {
+        userName: 'Oleg',
+        userSurname: 'Viktor',
+        greeting: function () {
+            return `my name is ${this.userName} and my surname is ${this.userSurname}`
+        }
+    }
+    console.log(user3.greeting());
+
+    // замикання - це можливість фунції мати внутрішню функцію, яка зберігає посилання на зовнішню змінну
+    function outer() {
+        let i = 1;
+
+        function inner() {
+            i += 1;
+            return i;
+        }
+
+        return inner;
+    }
+
+    let clos = outer();
+    console.log(clos());
+    console.log(clos());
+    console.log(clos());
+    let clos2 = outer()();
+    console.log(clos2);
+    console.log(outer()());
+
+    // маніпулятори - ізоляція, інкапсулювання, закрити від доступу дані, заховати
+    // створили об'єкт всередині функції
+    // створили і повертаємо об'єкт маніпулятор, в якому є функції
+    function userInitiate(name, age) {
+        let obj = {name: name, age: age}
+        return {
+            getName: () => {
+                return obj.name;
+            },
+            getAge: () => {
+                return obj.age;
+            },
+            setAge: (age) => {
+                obj.age = age;
+            }
+        }
+    }
+
+    let manipulator = userInitiate('petro', '20');
+    console.log(manipulator);
+    console.log(manipulator.getName());
+    console.log(manipulator.getAge());
+    manipulator.setAge(32);
+
+    // функція - конструктор, яка буде створювати об`єкт
+    function User(id, name, scills) {
+        this ['id'] = id;
+        this['name'] = name;
+        this['scills'] = scills;
+        this['greeting'] = () => {
+            console.log(`hello my name is ${this.name}`)
+        };
+
+    }
+
+    let user4 = new User(1, 'vasyl', ['jawa', 'js']);
+    console.log(user4);
+    let user5 = new User(2, 'dima', ['mysql', 'python']);
+    console.log(user5);
+
+    user4.greeting();
+    user5.greeting();
+
+    // в класі оголошують не функції, а методи
+    class User2class {
+        constructor(id, name) {
+            this.id = id;
+            this.name = name;
+        }
+
+        greeting() {
+            return `hello my name is ${this.name}`;
+        }
+    }
+
+    let user6 = new User2class(1, 'nastya');
+    console.log(user6);
+    console.log(user6.greeting());
+
+    class Person {
+        constructor(id, name, telNumber) {
+            this.id = id;
+            this.name = name;
+            this.telNumber = telNumber;
+        }
+    }
+let person= new Person('','','098-404-65-11');
+    console.log(person);
+
+    // розширення класів, батьківський клас - super
+    class Car{
+        constructor(power,speed) {
+        this.power=power;
+        this.speed=speed;
+        }
+    }
+    class OffroadCar extends Car{
+        constructor(power, speed, type) {
+            super(power, speed);
+            this.type = type;
+        }
+    }
+let superCar=new OffroadCar('wrx','180','awr')
+    console.log(superCar);
+
+
 
 </script>
 </body>
