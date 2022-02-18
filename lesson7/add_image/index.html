@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    function userCard(inputkey) {
+        let objCard = {balance: 100, transactionLimit: 100, historyLogs: [], key: inputkey};
+
+        return {
+            getCardOptions: () => objCard,
+
+            putCredits: function (many) {
+                this.balance += many
+                this.historyLogAdd('Received credits', many);
+            },
+
+            takeCredits: function (many) {
+                if (this.transactionLimit > many && this.balance > many) {
+                    this.balance -= many
+                    objCard.historyLogAdd('Withdrawal of credits', many);
+                } else console.error('недостатньо коштів або недостатній ліміт транзакції')
+            },
+
+            setTransactionLimit: function(newLimit)  {
+                objCard.transactionLimit = newLimit;
+                this.historyLogAdd('Transaction limit change', newLimit);
+            },
+
+            transferCredits: function (many, card) {
+                if (objCard.transactionLimit > many && objCard.balance > many) {
+                    let podatok = many * 0.005;
+                    card.putCredits(many * 0.995);
+                    this.takeCredits(many);
+                }
+            },
+            historyLogAdd: function (type, credits) {
+                objCard.historyLogs.push({
+                    operationType: type,
+                    credits: credits,
+                    operationTime: new Date().toLocaleString()
+                });
+            }
+        }
+
+    }
+
+
+    // const card3 = userCard(3);
+    // console.log(userCard(3).getCardOptions());
+    // card3.putCredits(150);
+    // card3.setTransactionLimit(5000);
+    // card3.takeCredits(100);
+    // let card1 = userCard(1);
+    // card3.transferCredits(50, card1);
+    // console.log(card3.getCardOptions());
+    // console.log(card1.getCardOptions());
+
+
+</script>
+</body>
+</html>
