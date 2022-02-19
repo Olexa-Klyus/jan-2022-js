@@ -7,57 +7,97 @@
 <body>
 <script>
 
-    function userCard(inputkey) {
-        let objCard = {balance: 100, transactionLimit: 100, historyLogs: [], key: inputkey};
+    function userCard(value) {
+        let inputkey = Math.floor(value)
+        if (inputkey < 4 && inputkey > 0) {
+            let objCard = {balance: 100, transactionLimit: 100, historyLogs: [], key: inputkey};
 
-        return {
-            getCardOptions: () => objCard,
+            return {
+                getCardOptions: () => objCard,
 
-            putCredits: function (many) {
-                this.balance += many
-                this.historyLogAdd('Received credits', many);
-            },
+                putCredits: function (many) {
+                    objCard.balance += many;
+                    this.historyLogAdd('Received credits', many);
+                },
 
-            takeCredits: function (many) {
-                if (this.transactionLimit > many && this.balance > many) {
-                    this.balance -= many
-                    objCard.historyLogAdd('Withdrawal of credits', many);
-                } else console.error('недостатньо коштів або недостатній ліміт транзакції')
-            },
+                takeCredits: function (many) {
+                    if (objCard.transactionLimit > many && objCard.balance > many) {
+                        objCard.balance -= many
+                        this.historyLogAdd('Withdrawal of credits', many);
+                    } else console.error('недостатньо коштів або недостатній ліміт транзакції');
+                },
 
-            setTransactionLimit: function(newLimit)  {
-                objCard.transactionLimit = newLimit;
-                this.historyLogAdd('Transaction limit change', newLimit);
-            },
+                setTransactionLimit: function (newLimit) {
+                    objCard.transactionLimit = newLimit;
+                    this.historyLogAdd('Transaction limit change', newLimit);
+                },
 
-            transferCredits: function (many, card) {
-                if (objCard.transactionLimit > many && objCard.balance > many) {
-                    let podatok = many * 0.005;
-                    card.putCredits(many * 0.995);
-                    this.takeCredits(many);
+                transferCredits: function (many, card) {
+                    if (card.getCardOptions(card).key !== objCard.key) {
+                        if (objCard.transactionLimit > many && objCard.balance > many) {
+                            card.putCredits(many);
+                            this.takeCredits(Math.round(many * 100.5)/100);
+                        }
+                    } else console.error('Карта вже використовується')
+                },
+                historyLogAdd: function (type, credits) {
+                    objCard.historyLogs.push({
+                        operationType: type,
+                        credits: credits,
+                        operationTime: new Date().toLocaleString().replaceAll(".",'/')
+                    });
                 }
-            },
-            historyLogAdd: function (type, credits) {
-                objCard.historyLogs.push({
-                    operationType: type,
-                    credits: credits,
-                    operationTime: new Date().toLocaleString()
-                });
             }
-        }
 
+        } else console.error('невірний номер карти');
     }
 
 
     // const card3 = userCard(3);
-    // console.log(userCard(3).getCardOptions());
+    // console.log(card3.getCardOptions());
     // card3.putCredits(150);
-    // card3.setTransactionLimit(5000);
+    // console.log(card3.getCardOptions());
     // card3.takeCredits(100);
+    // card3.setTransactionLimit(5000);
     // let card1 = userCard(1);
     // card3.transferCredits(50, card1);
     // console.log(card3.getCardOptions());
     // console.log(card1.getCardOptions());
+
+
+    class UserAccount {
+        constructor(name) {
+            this.name = name;
+            this.cards = [];
+        }
+
+        addCard() {
+            if (this.cards.length < 3) {
+                this.cards[this.cards.length] = userCard(this.cards.length + 1);
+            } else console.error(`Шановний ${this.name}, у Вас вже є максимальна кількість карток - ${this.cards.length}`);
+        }
+
+        getCardByKey(value) {
+            let inputkey = Math.floor(value);
+            if (inputkey > 0 && inputkey < this.cards.length + 1) {
+                return this.cards[inputkey - 1];
+            } else console.error(`Прошу внести правильний номер карти`);
+        }
+    }
+
+    const user = new UserAccount('Bob');
+    user.addCard();
+    user.addCard();
+    let card1=user.getCardByKey(1);
+    let card2=user.getCardByKey(2);
+
+    card1.putCredits(500);
+    card1.setTransactionLimit(800);
+    card1.transferCredits(300,card2);
+    card2.takeCredits(50);
+
+    console.log(card1.getCardOptions());
+    console.log(card2.getCardOptions());
 
 
 </script>
