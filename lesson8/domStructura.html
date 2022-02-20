@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lesson 8</title>
+    <style>
+        .wrap {
+            display: flex;
+        }
+
+        .product {
+            background: silver;
+            width: 200px;
+            margin: 3px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrap">
+    <div class="product">
+        <h2>product title 1</h2>
+        <p>Lorem ipsum</p>
+    </div>
+    <div class="product">
+        <h2>product title 2</h2>
+        <p>Lorem ipsum dolor.</p>
+    </div>
+
+</div>
+
+<script>
+    // console.log(document);
+    // console.log(document.head);
+    // console.log(document.body);
+    // console.log(document.title);
+    // console.log(document.getElementsByTagName('meta'));
+
+    // let metaList = document.getElementsByTagName('meta');
+    // for (const metaListElement of metaList) {
+    //     console.log('-------------start---------------------');
+    // console.log(metaListElement);
+    // let atributes = (metaListElement.attributes);
+    // console.log(atributes);
+    // console.log('----------------------------------');
+    //     for (const atribute of atributes) {
+    //         console.log(atribute);
+    //     }
+    // }
+
+    let titles=(document.getElementsByTagName('title'));
+    console.log(titles);
+
+    // let childrens=document.body.children;
+    // console.log(childrens);
+
+    // як витягнути вкладені елементи?
+    let products = document.getElementsByClassName('product');
+    for (const product of products) {
+        console.log(product);
+        // елементам можна додати або забрати клас
+        product.classList.add('newClass');
+        product.classList.add('хх');
+        product.classList.remove('хх');
+        console.log(product.classList.keys()); //поверне ітеруємий масив з назвами класів
+        console.log(product.classList.contains('xx')); //поверне так-ні - чи включає вміщує клас 'хх'
+
+        product.style.background='red';
+    }
+
+</script>
+</body>
+</html>
