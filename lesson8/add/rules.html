@@ -50,7 +50,7 @@
         for (const el of startElement.children) {
             let classListChild=el.classList;
             for (const key of classListChild.keys()) {
-                if (classNamesArr.indexOf(classListChild.item(key))) classNamesArr.push(classListChild.item(key));
+                if (classNamesArr.indexOf(classListChild.item(key))===-1) classNamesArr.push(classListChild.item(key));
             }
             classNamesArrFn(el);
         }
