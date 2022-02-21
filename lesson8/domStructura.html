@@ -20,7 +20,7 @@
 </head>
 <body>
 <div class="wrap">
-    <div class="product">
+    <div id="xxx" class="product">
         <h2>product title 1</h2>
         <p>Lorem ipsum</p>
     </div>
@@ -28,8 +28,30 @@
         <h2>product title 2</h2>
         <p>Lorem ipsum dolor.</p>
     </div>
-
 </div>
+
+<form action="aaaxxx" name="form1">
+    <input type="text" name="username" placeholder="enter name">
+    <input type="password" name="password" placeholder="enter password">
+    <div>
+        <label>
+            male
+            <input type="radio" name="gender" value="man">
+        </label>
+        <label>
+            female
+            <input type="radio" name="gender" value="woman">
+        </label>
+    </div>
+
+    <label>
+        <input type="checkbox" name="status">
+    </label>
+    <button>save</button>
+
+
+</form>
+
 
 <script>
     // console.log(document);
@@ -37,7 +59,7 @@
     // console.log(document.body);
     // console.log(document.title);
     // console.log(document.getElementsByTagName('meta'));
-
+    //
     // let metaList = document.getElementsByTagName('meta');
     // for (const metaListElement of metaList) {
     //     console.log('-------------start---------------------');
@@ -50,30 +72,72 @@
     //     }
     // }
 
-    let titles=(document.getElementsByTagName('title'));
-    console.log(titles);
-
+    // let titles = (document.getElementsByTagName('title'));
+    // console.log(titles);
     // let childrens=document.body.children;
     // console.log(childrens);
 
-    // як витягнути вкладені елементи?
-    let products = document.getElementsByClassName('product');
-    for (const product of products) {
-        console.log(product);
-        // елементам можна додати або забрати клас
-        product.classList.add('newClass');
-        product.classList.add('хх');
-        product.classList.remove('хх');
-        console.log(product.classList.keys()); //поверне ітеруємий масив з назвами класів
-        console.log(product.classList.item(0)); //виведе назву класу з індексом (0)
-        console.log(product.classList.toString()); //виведе рядок з назвами класів
+    // // як витягнути вкладені елементи?
+    // let products = document.getElementsByClassName('product');
+    // for (const product of products) {
+    //     console.log(product);
+    //     // елементам можна додати або забрати клас
+    //     product.classList.add('newClass');
+    //     product.classList.add('хх');
+    //     product.classList.remove('хх');
+    //     console.log(product.classList.keys()); //поверне ітеруємий масив з назвами класів
+    //     console.log(product.classList.item(0)); //виведе назву класу з індексом (0)
+    //     console.log(product.classList.toString()); //виведе рядок з назвами класів
+    //
+    //     console.log(product.classList.contains('xx')); //поверне так-ні - чи включає вміщує клас 'хх'
+    //     product.style.background = 'red';
+    // }
 
-        console.log(product.classList.contains('xx')); //поверне так-ні - чи включає вміщує клас 'хх'
-        product.style.background='red';
+    // //Звернутися до вкладеного H1
+    // let h1OfBlock1 = products[0].children[0];
+    // h1OfBlock1.innerHTML = '<i>hello</i>';
+    //
+    // //повернути вузли - html -елемент, текст, коментар (є більше 12 різних)
+    // console.log(document.body.childNodes);
+    //
+    // //є можливість пошуку за допомогою належності до css класу
+    // // поверне перший елемент
+    // let queryElem=document.querySelector('body>.wrap>.product');
+    // console.log(queryElem);
+    // // поверне всі елементи, навіть унікальні у вигляді вузлів, увага - у вузлах може не бути деяких методів
+    // let queryList=document.querySelectorAll('body>.wrap>.product');
+    // console.log(queryList);
+    // //можна по ідентифікатору
+    // let xxxList=document.querySelectorAll('#xxx');
+    // console.log(xxxList);
+
+    // як знайти елементи у формі?
+    //поверне колекцію форм. беремо відразу нульовий - першу форму
+    // let form1=document.getElementsByTagName('form')[0];
+    // console.log(form1);
+    // // перший по черзі - це input
+    // console.log(form1[0]);
+    // console.log(form1[0].name);
+
+    // через formsAPI більш зручний інтерфейс
+    // console.log(document.forms.form1.username);
+    // console.log(document.forms.form1.password);
+    // console.log(document.forms.form1.gender);
+
+    //Рекурсія
+    let element=document.getElementsByTagName('div')[0];
+    console.log(element.id); // якщо в діва нема id отримуємо нічого
+    console.log(element.getAttribute('id')); // в цьому випадку якщо в діва нема id отримуємо null
+
+    // просто вивести всі вкладені елементи, починаючи від стартового
+    function scraper(startElem){
+        console.log(startElem);
+        let startElemChildren = startElem.children;
+        for (const childElem of startElemChildren) {
+            scraper(childElem);
+        }
     }
-
-
-
+    scraper(document.body);
 
 
 </script>
