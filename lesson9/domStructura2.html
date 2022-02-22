@@ -127,6 +127,44 @@
     //     simpsonsDiv.appendChild(simpsonDiv);
     // }
 
+    // //можна запакувати в функцію в якості аргумента передати масив
+    // function divCreator(arrSimpsons){
+    //     let simpsonsDiv = document.getElementsByClassName('simpsons')[0];
+    //     for (const simpson of arrSimpsons) {
+    //         let simpsonDiv = document.createElement('div');
+    //         simpsonsDiv.classList.add('boxSimpson');
+    //
+    //         let h2 = document.createElement('h2');
+    //         h2.innerText = `${simpson.name} ${simpson.surname}`;
+    //         simpsonDiv.appendChild(h2);
+    //
+    //         let imageElem = document.createElement('img');
+    //         imageElem.src = simpson.photo;
+    //         imageElem.alt = `${simpson.name}`;
+    //         simpsonsDiv.appendChild(imageElem);
+    //
+    //         simpsonsDiv.appendChild(simpsonDiv);
+    //     }
+    // }
+    // divCreator(simpsons);
+
+    // // фічі (деструктуризація)
+    // //робили до того так
+    // let user={name:'vasya',age:31,status:true,id:1};
+    // let idOld=user.id;
+    // let nameOld=user.name;
+    // let ageOld=user.age;
+    // // можна замінити на скорочену конструкцію,
+    // // якщо повторюється назва поля, застосовуємо псевдонім
+    // let {id,name,age,wife:{name:wifeName}}={name:'vasya',age:31,status:true,id:1,wife:{name:'Olga'}};
+    // console.log(id,name,wifeName);
+    // // можна використати при прийманні аргументів функції
+    // // прийме з user тільки ці два аргумента
+    // function exampl({id,name}){
+    //     console.log(id,name);
+    // }
+    // exampl(user);
+
 </script>
 </body>
 </html>
