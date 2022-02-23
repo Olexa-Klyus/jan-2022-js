@@ -49,6 +49,16 @@
     //     створити скріпт, котрий зчитує всі заголовки, та робить в блоці з id=content з них список(ul>li), який буде змістом того, що знаходиться на сторінці.
     //     Скріпт повинен працювати навіть якщо кількість блоків з заголовком та параграфом зміниться.
 
+    let ulElem= document.createElement('ul');
+    let idContent=document.getElementById('content');
+    idContent.append(ulElem);
+
+    let listAllH2= document.getElementsByTagName('h2');
+    for (const el of listAllH2) {
+        let liElem=document.createElement('li');
+        liElem.innerText=el.innerText;
+        ulElem.appendChild(liElem);
+    }
 
 
 </script>

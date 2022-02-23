@@ -10,7 +10,8 @@
 <body>
 <script>
 
-    let users = [{
+    let users = [
+        {
         name: 'vasya',
         age: 31,
         status: false,
@@ -175,6 +176,32 @@
         },
 
     ];
+
+    let divIdContent= document.createElement('div');
+    divIdContent.setAttribute('id','content');
+    document.body.appendChild(divIdContent);
+
+    let h1Elem=document.createElement('h1');
+    h1Elem.innerText='Правила бойцовского клуба';
+    document.body.appendChild(h1Elem);
+
+    let divIdWrap= document.createElement('div');
+    divIdWrap.setAttribute('id','wrap');
+    document.body.appendChild(divIdWrap);
+
+    for (let i = 0; i < rules.length; i++) {
+        let divArr=document.createElement('div');
+        divArr.classList.add('rules',`rule${i+1}`)
+        divIdWrap.appendChild(divArr);
+
+        let h2Arr=document.createElement('h2');
+        h2Arr.innerText=rules[i].title;
+        let pArr=document.createElement('p');
+        pArr.innerText=rules[i].body;
+        divArr.append (h2Arr,pArr);
+    }
+
+
 </script>
 </body>
 </html>
