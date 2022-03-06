@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--<form action="">-->
+<!--  //можна описати функцію прямо в елементі, але так ніхто не робить-->
+<!--  <button onclick="(function(){-->
+<!--  alert('text');}())">Click Me</button>-->
+<!--</form>-->
+<!--<h2 id="position"></h2>-->
+<!--<button id="btn1">Button 1</button>-->
+
+<!--<form>-->
+<!--    <input type="text" name="login">-->
+<!--    <input type="text" name="password">-->
+<!--    <button> sing in</button>-->
+<!--</form>-->
+
+<!--<form>-->
+<!--    <input type="text" name="userName">-->
+<!--    <button>find</button>-->
+<!--</form>-->
+<!--<ul id="results"></ul>-->
+
+
+<!--<input type="checkbox" name="status" id="ch-box">-->
+
+<!--&lt;!&ndash;регулярні вирази input&ndash;&gt;-->
+<!--&lt;!&ndash;є багато regex template&ndash;&gt;-->
+<!--<form action="">-->
+<!--&lt;!&ndash;    <input type="text" required minlength="3" maxlength="7">&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="number" required >&ndash;&gt;-->
+<!--    <input type="text" pattern="[0-9]{7}">-->
+<!--    <input type="text" pattern="\d{7}">-->
+<!--&lt;!&ndash;    номер паспорта&ndash;&gt;-->
+<!--    <input type="text" pattern="[a-zA-Zа-яА-ЯїЇ]{2}\d{6}">-->
+<!--&lt;!&ndash;    або телефон з сайту регулярки&ndash;&gt;-->
+<!--    <input type="text" pattern='^(?:\+38)?(?:\(044\)[ .-]?[0-9]{3}[ .-]?[0-9]{2}[ .-]?[0-9]{2}|044[ .-]?[0-9]{3}[ .-]?[0-9]{2}[ .-]?[0-9]{2}|044[0-9]{7})$'>-->
+
+<!--    <button>send</button>-->
+<!--</form>-->
+
+<script>
+    let users = [
+        {name: 'vasya', age: 31, status: false},
+        {name: 'petya', age: 30, status: true},
+        {name: 'kolya', age: 29, status: true},
+        {name: 'olya', age: 28, status: false},
+        {name: 'max', age: 30, status: true},
+        {name: 'anya', age: 31, status: false},
+        {name: 'oleg', age: 28, status: false},
+        {name: 'andrey', age: 29, status: true},
+        {name: 'masha', age: 30, status: true},
+        {name: 'olya', age: 31, status: false},
+        {name: 'max', age: 31, status: true}
+    ];
+
+    //   //onclick, ddEventListener,(e)функція повинна бути описана, оскільки це об'єкт
+    //   let btn1=document.getElementById('btn1');
+    //   btn1.onclick=function (){
+    //     console.log('click1');
+    //   }
+    //   //щоб прив'язати на 1 об'єкт події - дві дії
+    //   //ставимо слухача події
+    //   btn1.addEventListener('click',function (){
+    //     console.log('click2');
+    //   });
+    //   btn1.addEventListener('click',function (e){
+    //     console.log(e);
+    //     console.log(e.target);
+    //   });
+    //
+    // let position=document.getElementById('position');
+    // document.onmousemove=function (e){
+    //   position.innerText=`x - ${e.clientX} : y - ${e.clientY}`;
+    // }
+    //
+    // let points = [];
+    // document.onclick=function (e){
+    //   points.push({x:e.clientX,y:e.clientY});
+    // };
+    //
+    // btn1.addEventListener('click',()=>{
+    //   console.log(points)});
+
+
+    // //preventDefault
+    // let users1 = [];
+    // let form1 = document.forms[0];
+    // form1.onsubmit = function (e) {
+    //     e.preventDefault();
+    //     users1.push({login: e.target.login.value, password: e.target.password.value});
+    //     console.log(users1);
+    // };
+    //
+    // let inputChar = form1.login;
+    // inputChar.addEventListener('input', (e) => {
+    //     if (e.target.value.toLowerCase().includes('dog'))
+    //     alert(e.target.value);
+    // });
+
+
+    //пошук по значенню input елемента в масиві та збереження в інший масив
+    //
+    // let form2 = document.forms[0];
+    // let resultsUl = document.getElementById('results');
+    // let myInput = form2.userName;//так можна доступитися до input
+    //
+    // form2.onsubmit = function (e) {
+    //     e.preventDefault();
+    //     resultsUl.innerText='';
+    //     myInput = e.target.userName;//можна так також доступитися
+    //     let filterUser = users.filter(value => value.name === myInput.value);
+    //     console.log(filterUser);
+    //     for (const elem of filterUser) {
+    //         let resLi=document.createElement('li');
+    //         resLi.innerText=`${elem.name} ${elem.age}`;
+    //         resultsUl.append(resLi);
+    //     }
+    // };
+
+
+    // пошук елемента в масиві з допомогою checkbox
+    //
+    //     let chBox = document.getElementById('ch-box');
+    //     let resArray = [];
+    //     chBox.onclick = function () {
+    //         if (chBox.checked) {
+    //             resArray = users.filter(value => value.status);
+    //         } else {
+    //             resArray = users.filter(value => !value.status);
+    //         }
+    //         for (const el of resArray) {
+    //             console.log(el);
+    //         }
+    //     };
+
+    //регулярка regex
+    let phone='+380981111111';
+    let re = /\+380\d{9}/i;
+    console.log(phone.match(re));
+
+</script>
+</body>
+</html>
