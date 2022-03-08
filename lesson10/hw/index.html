@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <style> .unVisible  { display: none}</style>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -86,20 +85,26 @@
         {title: 'FullStack', body: 'Lorem ipsum dolor sit amet, consectetur adipisicing'},
         {title: 'Frontend', body: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, ullam?'}
     ];
+
+    let unVisibleStyle = document.createElement('style');
+    unVisibleStyle.innerHTML = '.unVisible{display:none}</style>';
+    document.head.appendChild(unVisibleStyle);
+
     let commentWrap = document.createElement('div');
     document.body.appendChild(commentWrap);
 
     for (const el of commentsArr) {
         let commentDiv = document.createElement('div');
-        let commentTitle= document.createElement('h3');
-        commentTitle.innerText=el.title;
-        let commentText=document.createElement('p');
-        commentText.innerText=el.body;
-        let commentBtn=document.createElement('button');
-        commentBtn.innerText='згорнути текст';
-        commentDiv.append(commentTitle,commentBtn,commentText);
+        let commentTitle = document.createElement('h3');
+        commentTitle.innerText = el.title;
+        let commentText = document.createElement('p');
+        commentText.innerText = el.body;
+        let commentBtn = document.createElement('button');
+        commentBtn.innerText = 'згорнути текст';
+        commentDiv.append(commentTitle, commentBtn, commentText);
         document.body.appendChild(commentDiv);
-        commentBtn.onclick=()=>{
+
+        commentBtn.onclick = () => {
             commentText.classList.toggle('unVisible');
         }
         document.body.appendChild(document.createElement('hr'))
