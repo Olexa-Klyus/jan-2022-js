@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style> .unVisible  { display: none}</style>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
@@ -72,6 +73,7 @@
             ulMenu.style.display = '';
         } else ulMenu.style.display = 'none';
     }
+    document.form1.appendChild(document.createElement('hr'))
 
     // - Создать список комментариев , пример объекта коментария - {title : 'lorem', body:'lorem ipsum dolo sit ameti'}.
     //     Вывести список комментариев в документ, каждый в своем блоке.
@@ -90,14 +92,18 @@
     for (const el of commentsArr) {
         let commentDiv = document.createElement('div');
         let commentTitle= document.createElement('h3');
-        let commentText=document.createElement('p');
-        let commentBtn=document.createElement('button');
         commentTitle.innerText=el.title;
+        let commentText=document.createElement('p');
         commentText.innerText=el.body;
+        let commentBtn=document.createElement('button');
         commentBtn.innerText='згорнути текст';
-
+        commentDiv.append(commentTitle,commentBtn,commentText);
+        document.body.appendChild(commentDiv);
+        commentBtn.onclick=()=>{
+            commentText.classList.toggle('unVisible');
+        }
+        document.body.appendChild(document.createElement('hr'))
     }
-
 
 </script>
 </body>
