@@ -30,16 +30,27 @@
     form1.append(input1,input2,document.createElement('hr'));
     form2.append(input3,input4,document.createElement('hr'));
 
+    // пробую різні варіанти звернень до елемента
     inputBtn.onclick=()=>{
         console.log(document.forms.form1.input1.value);
         console.log(document.forms[0].input2.value);
-        console.log(form2.input3.value);
+        console.log(document.form2.input3.value);
         console.log(form2.input4.value);
     }
 
     // - Створити 3 инпута та кнопку. Один визначає кількість рядків, другий - кількість ячеєк, третій вмиіст ячеєк.
     //     При натисканні кнопки, вся ця інформація зчитується і формується табличка, з відповідним вмістом.
     // (Додаткова частина для завдання)
+
+
+
+
+
+    // - Сворити масив не цензцрних слів.
+    //     Сворити інпут текстового типу.
+    //     Якщо людина вводить слово і воно міститься в масиві не цензурних слів
+    // кинути алерт з попередженням.
+    //     Перевірку робити при натисканні на кнопку
 
 
 
