@@ -18,10 +18,10 @@
     form2.name = 'form2';
     let inputBtn = document.createElement('button');
     inputBtn.innerText = 'зчитати inputs';
-    inputBtn.style.background='silver';
-    let titleTask1= document.createElement('h2');
-    titleTask1.innerText='Завдання 1 - доступ до інпутів через Forms API';
-    document.body.append(titleTask1,form1, form2, inputBtn, document.createElement('hr'));
+    inputBtn.style.background = 'silver';
+    let titleTask1 = document.createElement('h2');
+    titleTask1.innerText = 'Завдання 1 - доступ до інпутів через Forms API';
+    document.body.append(titleTask1, form1, form2, inputBtn, document.createElement('hr'));
 
     let input1 = document.createElement('input');
     input1.name = 'input1';
@@ -46,26 +46,41 @@
     //     При натисканні кнопки, вся ця інформація зчитується і формується табличка, з відповідним вмістом.
     // (Додаткова частина для завдання)
     let inputTblLines = document.createElement('input');
-    inputTblLines.placeholder = 'Введіть кількість рядків';
     let inputTblColumn = document.createElement('input');
-    inputTblColumn.placeholder = 'Введіть кількість стовпців';
     let inputTblValue = document.createElement('input');
+    let divWrap = document.createElement('div');
+    let titleTask2 = document.createElement('h2');
+    let inputBtn2 = document.createElement('button');
+
+    inputTblLines.placeholder = 'Введіть кількість рядків';
+    inputTblColumn.placeholder = 'Введіть кількість стовпців';
     inputTblValue.placeholder = 'Введіть вміст таблиці';
-    let titleTask2= document.createElement('h2');
-    titleTask2.innerText='Завдання 2 - будуємо таблицю';
-    let inputBtn2=document.createElement('button');
-    inputBtn2.innerText='будувати таблицю';
-    inputBtn2.style.background='silver';
-    document.body.append(titleTask2,inputTblLines,inputTblColumn,inputTblValue,document.createElement('hr'),inputBtn2,document.createElement('hr'));
 
-    inputBtn2.onclick=()=>{
-        let myTbl = document.createElement('table');
+    titleTask2.innerText = 'Завдання 2 - будуємо таблицю';
+    inputBtn2.innerText = 'будувати таблицю';
+    inputBtn2.style.background = 'silver';
+    divWrap.append(titleTask2, inputTblLines, inputTblColumn, inputTblValue,)
+    document.body.append(divWrap, document.createElement('hr'), inputBtn2, document.createElement('hr'));
 
-
-        let myTblTr = document.createElement('tr')
-
-
+    inputBtn2.onclick = () => {
+        let tbl = document.createElement('table');
+        tbl.style.border = '1px solid blue';
+        tbl.style.borderSpacing = "0";
+        divWrap.appendChild(tbl);
+        for (let i = 0; i < inputTblLines.value; i++) {
+            let tblTr = document.createElement('tr')
+            tbl.appendChild(tblTr);
+            for (let j = 0; j < inputTblColumn.value; j++) {
+                let tblTd = document.createElement('td')
+                tblTd.innerText = inputTblValue.value;
+                tblTd.style.border = '1px solid blue';
+                tblTd.style.width = '80px';
+                tblTd.style.textAlign = 'center';
+                tblTr.appendChild(tblTd);
+            }
+        }
     }
+    // document.body.appendChild(document.createElement('hr'));
 
     // - Сворити масив не цензцрних слів.
     //     Сворити інпут текстового типу.
@@ -73,6 +88,39 @@
     // кинути алерт з попередженням.
     //     Перевірку робити при натисканні на кнопку
 
+    let mokselWord = ['путлер', 'гандон', 'хуйло', 'кацап', 'вбивця', 'московит'];
+    let inputTxt = document.createElement('input');
+    inputTxt.placeholder = 'путін це хто?';
+    let inputBtn3 = document.createElement('button');
+    inputBtn3.innerText = 'перевірка';
+    document.body.append(inputTxt, inputBtn3);
+    inputBtn3.onclick = () => {
+        mokselWord.forEach(value => {
+            if (value === inputTxt.value) {
+                alert(`все вірно, путін - ${inputTxt.value}`)
+            }
+        })
+    };
+
+    // - Сворити масив не цензцрних слів.
+    //     Сворити інпут текстового типу.
+    //     Потрібно перевіряти чи не містить ціле речення в собі погані слова.
+    //     Кинути алерт з попередженням у випадку якщо містить.
+    //     Перевірку робити при натисканні на кнопку
+
+    let inputTxt1 = document.createElement('input');
+    inputTxt1.placeholder = 'опишіть путіна одним реченням...';
+    inputTxt1.style.width = '300px';
+    let inputBtn4 = document.createElement('button');
+    inputBtn4.innerText = 'перевірка';
+    document.body.append(document.createElement('hr'), inputTxt1, inputBtn4);
+    inputBtn4.onclick = () => {
+        mokselWord.forEach(value => {
+            if (inputTxt1.value.includes(value)) {
+                alert(`все вірно, путін - ${value}`)
+            }
+        })
+    };
 
 </script>
 </body>
