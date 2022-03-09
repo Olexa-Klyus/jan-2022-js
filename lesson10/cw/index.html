@@ -12,26 +12,30 @@
     //     Кнопка повинна лежати за межами форм (Щоб ьуникнути  перезавантаження сторінки)
     // Доступ до інпутів через Forms API. Отже дайте формі та інпутам всі необхідні атрибути.
 
-    let form1=document.createElement('form');
-    let form2=document.createElement('form');
-    form1.name='form1';
-    form2.name='form2';
-    let inputBtn=document.createElement('button');inputBtn.innerText='зчитати inputs';
-    document.body.append(form1,form2,inputBtn);
+    let form1 = document.createElement('form');
+    let form2 = document.createElement('form');
+    form1.name = 'form1';
+    form2.name = 'form2';
+    let inputBtn = document.createElement('button');
+    inputBtn.innerText = 'зчитати inputs';
+    inputBtn.style.background='silver';
+    let titleTask1= document.createElement('h2');
+    titleTask1.innerText='Завдання 1 - доступ до інпутів через Forms API';
+    document.body.append(titleTask1,form1, form2, inputBtn, document.createElement('hr'));
 
-    let input1=document.createElement('input');
-    input1.name='input1';
-    let input2=document.createElement('input');
-    input2.name='input2';
-    let input3=document.createElement('input');
-    input3.name='input3';
-    let input4=document.createElement('input');
-    input4.name='input4';
-    form1.append(input1,input2,document.createElement('hr'));
-    form2.append(input3,input4,document.createElement('hr'));
+    let input1 = document.createElement('input');
+    input1.name = 'input1';
+    let input2 = document.createElement('input');
+    input2.name = 'input2';
+    let input3 = document.createElement('input');
+    input3.name = 'input3';
+    let input4 = document.createElement('input');
+    input4.name = 'input4';
+    form1.append(input1, input2, document.createElement('hr'));
+    form2.append(input3, input4, document.createElement('hr'));
 
     // пробую різні варіанти звернень до елемента
-    inputBtn.onclick=()=>{
+    inputBtn.onclick = () => {
         console.log(document.forms.form1.input1.value);
         console.log(document.forms[0].input2.value);
         console.log(document.form2.input3.value);
@@ -41,19 +45,33 @@
     // - Створити 3 инпута та кнопку. Один визначає кількість рядків, другий - кількість ячеєк, третій вмиіст ячеєк.
     //     При натисканні кнопки, вся ця інформація зчитується і формується табличка, з відповідним вмістом.
     // (Додаткова частина для завдання)
+    let inputTblLines = document.createElement('input');
+    inputTblLines.placeholder = 'Введіть кількість рядків';
+    let inputTblColumn = document.createElement('input');
+    inputTblColumn.placeholder = 'Введіть кількість стовпців';
+    let inputTblValue = document.createElement('input');
+    inputTblValue.placeholder = 'Введіть вміст таблиці';
+    let titleTask2= document.createElement('h2');
+    titleTask2.innerText='Завдання 2 - будуємо таблицю';
+    let inputBtn2=document.createElement('button');
+    inputBtn2.innerText='будувати таблицю';
+    inputBtn2.style.background='silver';
+    document.body.append(titleTask2,inputTblLines,inputTblColumn,inputTblValue,document.createElement('hr'),inputBtn2,document.createElement('hr'));
+
+    inputBtn2.onclick=()=>{
+        let myTbl = document.createElement('table');
 
 
+        let myTblTr = document.createElement('tr')
 
 
+    }
 
     // - Сворити масив не цензцрних слів.
     //     Сворити інпут текстового типу.
     //     Якщо людина вводить слово і воно міститься в масиві не цензурних слів
     // кинути алерт з попередженням.
     //     Перевірку робити при натисканні на кнопку
-
-
-
 
 
 </script>
