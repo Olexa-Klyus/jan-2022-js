@@ -17,15 +17,21 @@ document.onclick = (e) => {
 //     При лівому кліку миші  зробить popup (спливаючий блок) в якому буде вся інформація про блок.
 //     Інформація яку потрібно вивести в popup: Назва тегу, список класів, список ід, розміри в форматі висота*ширина
 
-document.onclick = (e) => {
-    let target = e.target;
-    console.log(`Назва тегу - ${target.tagName}`);
-    console.log(`Значення - ${target.innerText}`);
-    console.log(`список класів - ${target.className}`);
-    console.log(`список ід - ${target.id}`);
-    console.log(`ширина - ${target.clientWidth}, висота - ${target.clientHeight}`);
-    console.log(`___________________________________________________________________`);
-}
+document.addEventListener('click', function (event) {
+    let popup = document.createElement('div');
+    popup.style.width = '250px';
+    popup.style.height = '150px';
+    popup.style.background = 'silver';
+    popup.style.position = 'absolute';
+    popup.style.top = `${event.clientY}px`;
+    popup.style.left = `${event.clientX}px`;
+    popup.style.padding = '5px';
+    let target = event.target;
+    popup.innerHTML = `Назва тегу - ${target.tagName}<br>Значення - ${target.innerText}<br>список класів - ${target.className}
+            <br>список ід - ${target.id}<br>ширина - ${target.clientWidth}, висота - ${target.clientHeight}`;
+    document.body.appendChild(popup);
+    setTimeout(() => popup.remove(), 1500);
+})
 
 // -- взять массив пользователей
 // - Создать три чекбокса. Каждый из них активирует фильтр для вышеуказаного массива. Фильтры могут работать как вместе так и по отдельности.
@@ -96,7 +102,9 @@ let tblLineBuild = function (tblLine, arrObj) {
     }
 }
 
-let wrapDivTbl=document.createElement('div');
+let wrapDivTbl = document.createElement('div');
+wrapDivTbl.id='divWrap';
+
 
 let tblBuild = function () {
     let tblUsers = document.createElement('table');
@@ -136,7 +144,42 @@ checkAddress.onclick = () => {
 }
 tblBuild();
 
+// *****(Прям овердоз с рекурсией) Создать функцию которая принимает какой-либо элемент DOM-структуры .Функция создает в боди 2 кнопки (назад/вперед)
+// при нажатии вперед, вы переходите к дочернему элементу, при еще одном нажатии на "вперед", вы переходите к следующему дочернему элементу (лежащему на одном уровне)
+// НО если у (какого-либо)дочеренего элемента есть дети, то нажатие "вперед" позволяет нам войти внутрь элемента и  выводит первого ребенка. и тд.
+//     Когда все дети заканчиваются, мы выходим из данного дочернего элемента и переходим к следующему, лежащему с ним на одном уровне
 
+let prevBtn = document.createElement('button');
+let nextBtn=document.createElement('button');
+prevBtn.innerText='Previous Element';
+prevBtn.style.margin='10px';
+prevBtn.style.background='silver';
+prevBtn.style.width='150px';
+prevBtn.style.borderRadius='5px';
+
+nextBtn.innerText='Next Element';
+nextBtn.style.margin='10px';
+nextBtn.style.background='silver';
+nextBtn.style.width='150px';
+nextBtn.style.borderRadius='5px';
+
+let elementDOM=document.getElementById('divWrap');
+document.body.append(prevBtn,nextBtn);
+
+let nextElement=function (elem){
+    if (!elem.hasChildNodes()){
+        console.log('maє діти')
+        nextElement(elem.firstChild);
+        // return elem.nextSibling;
+
+    }else{
+        console.log(elem)
+        return elem.nextSibling;
+    }
+}
+let currentElement= {};
+currentElement=nextElement(elementDOM);
+console.log(currentElement);
 
 
 
