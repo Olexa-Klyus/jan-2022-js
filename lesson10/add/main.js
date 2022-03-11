@@ -235,3 +235,31 @@ prevBtn.onclick = () => {
     }
 }
 
+
+// Завдання важке для розуміння, але дуже легке в реалізації. Тут треба буде погуглити
+// *** При виділені сегменту тексту на сторінці він стає жирний/курсивний/або якось іншим способом змінює свій стан
+
+let areaText = document.createElement("textarea");
+document.body.appendChild(areaText);
+let txtLorem = `Завдання важке для розуміння, але дуже легке в реалізації. Тут треба буде погуглити При виділені сегменту 
+тексту на сторінці він стає жирний/курсивний/або якось іншим способом змінює свій стан`;
+areaText.innerText = txtLorem;
+areaText.style.width = '800px';
+areaText.style.height = '100px';
+areaText.onselect = () => {
+    let selectedText = areaText.value.slice(areaText.selectionStart, areaText.selectionEnd);
+    areaText.setRangeText(selectedText.toUpperCase());
+}
+
+
+let range = new Range();
+document.onclick = (e) => {
+    if (e.target.tagName !== 'TEXTAREA' && document.getSelection().toString() !== "") {
+        let spainEl = document.createElement('span');
+        spainEl.style.fontSize = '16pt';
+        spainEl.style.fontStyle = 'italic';
+        range = document.getSelection().getRangeAt(0);
+        range.surroundContents(spainEl);
+        console.log(spainEl);
+    }
+}
