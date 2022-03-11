@@ -3,35 +3,35 @@
 //     Інформація яку потрібно вивести: Назва тегу, список класів, список ід, розміри в форматі висота*ширина
 
 
-document.onclick = (e) => {
-    let target = e.target;
-    console.log(`Назва тегу - ${target.tagName}`);
-    console.log(`Значення - ${target.innerText}`);
-    console.log(`список класів - ${target.className}`);
-    console.log(`список ід - ${target.id}`);
-    console.log(`ширина - ${target.clientWidth}, висота - ${target.clientHeight}`);
-    console.log(`___________________________________________________________________`);
-}
+// document.onclick = (e) => {
+//     let target = e.target;
+//     console.log(`Назва тегу - ${target.tagName}`);
+//     console.log(`Значення - ${target.innerText}`);
+//     console.log(`список класів - ${target.className}`);
+//     console.log(`список ід - ${target.id}`);
+//     console.log(`ширина - ${target.clientWidth}, висота - ${target.clientHeight}`);
+//     console.log(`___________________________________________________________________`);
+// }
 
 // - Описати скріпт, котрий, якщо доєднати до будь-якої сторінки дозволить зробити наступне:
 //     При лівому кліку миші  зробить popup (спливаючий блок) в якому буде вся інформація про блок.
 //     Інформація яку потрібно вивести в popup: Назва тегу, список класів, список ід, розміри в форматі висота*ширина
 
-document.addEventListener('click', function (event) {
-    let popup = document.createElement('div');
-    popup.style.width = '250px';
-    popup.style.height = '150px';
-    popup.style.background = 'silver';
-    popup.style.position = 'absolute';
-    popup.style.top = `${event.clientY}px`;
-    popup.style.left = `${event.clientX}px`;
-    popup.style.padding = '5px';
-    let target = event.target;
-    popup.innerHTML = `Назва тегу - ${target.tagName}<br>Значення - ${target.innerText}<br>список класів - ${target.className}
-            <br>список ід - ${target.id}<br>ширина - ${target.clientWidth}, висота - ${target.clientHeight}`;
-    document.body.appendChild(popup);
-    setTimeout(() => popup.remove(), 1500);
-})
+// document.addEventListener('click', function (event) {
+//     let popup = document.createElement('div');
+//     popup.style.width = '250px';
+//     popup.style.height = '150px';
+//     popup.style.background = 'silver';
+//     popup.style.position = 'absolute';
+//     popup.style.top = `${event.clientY}px`;
+//     popup.style.left = `${event.clientX}px`;
+//     popup.style.padding = '5px';
+//     let target = event.target;
+//     popup.innerHTML = `Назва тегу - ${target.tagName}<br>Значення - ${target.innerText}<br>список класів - ${target.className}
+//             <br>список ід - ${target.id}<br>ширина - ${target.clientWidth}, висота - ${target.clientHeight}`;
+//     document.body.appendChild(popup);
+//     setTimeout(() => popup.remove(), 1500);
+// })
 
 // -- взять массив пользователей
 // - Создать три чекбокса. Каждый из них активирует фильтр для вышеуказаного массива. Фильтры могут работать как вместе так и по отдельности.
@@ -103,14 +103,14 @@ let tblLineBuild = function (tblLine, arrObj) {
 }
 
 let wrapDivTbl = document.createElement('div');
-wrapDivTbl.id='divWrap';
+wrapDivTbl.id = 'divWrap';
+document.body.appendChild(wrapDivTbl);
 
 
 let tblBuild = function () {
     let tblUsers = document.createElement('table');
     tblUsers.style.borderSpacing = '0';
     wrapDivTbl.appendChild(tblUsers);
-    document.body.appendChild(wrapDivTbl);
 
     let filterArr = usersWithAddress;
     if (checkStatus.checked) {
@@ -148,38 +148,92 @@ tblBuild();
 // при нажатии вперед, вы переходите к дочернему элементу, при еще одном нажатии на "вперед", вы переходите к следующему дочернему элементу (лежащему на одном уровне)
 // НО если у (какого-либо)дочеренего элемента есть дети, то нажатие "вперед" позволяет нам войти внутрь элемента и  выводит первого ребенка. и тд.
 //     Когда все дети заканчиваются, мы выходим из данного дочернего элемента и переходим к следующему, лежащему с ним на одном уровне
+let currentElement = {}
+let firstElement = document.getElementById('divWrap');
+currentElement = firstElement;
 
+currentElement.style.background = 'yellow';
+
+let divWrapBtn = document.createElement("div");
 let prevBtn = document.createElement('button');
-let nextBtn=document.createElement('button');
-prevBtn.innerText='Previous Element';
-prevBtn.style.margin='10px';
-prevBtn.style.background='silver';
-prevBtn.style.width='150px';
-prevBtn.style.borderRadius='5px';
+let nextBtn = document.createElement('button');
+prevBtn.innerText = 'Previous Element';
+prevBtn.style.margin = '10px';
+prevBtn.style.background = 'silver';
+prevBtn.style.width = '150px';
+prevBtn.style.borderRadius = '5px';
 
-nextBtn.innerText='Next Element';
-nextBtn.style.margin='10px';
-nextBtn.style.background='silver';
-nextBtn.style.width='150px';
-nextBtn.style.borderRadius='5px';
+nextBtn.innerText = 'Next Element';
+nextBtn.style.margin = '10px';
+nextBtn.style.background = 'silver';
+nextBtn.style.width = '150px';
+nextBtn.style.borderRadius = '5px';
 
-let elementDOM=document.getElementById('divWrap');
-document.body.append(prevBtn,nextBtn);
+divWrapBtn.append(prevBtn, nextBtn);
+document.body.append(divWrapBtn);
 
-let nextElement=function (elem){
-    if (!elem.hasChildNodes()){
-        console.log('maє діти')
-        nextElement(elem.firstChild);
-        // return elem.nextSibling;
 
-    }else{
-        console.log(elem)
-        return elem.nextSibling;
+let nextElement = function (elem) {
+    elem.style.background = '';
+
+    if (elem.firstElementChild !== null) {
+        elem.firstElementChild.style.background = 'silver';
+        console.log(elem.tagName, ' ---має дітей');
+        console.log(elem.firstElementChild.tagName, '--- перша дитина');
+        return elem.firstElementChild;
+    } else {
+        if (elem.nextElementSibling !== null) {
+            console.log(elem.tagName, elem.innerText, ' ---до наступного елемента');
+            elem.nextElementSibling.style.background = 'silver';
+            return elem.nextElementSibling;
+        } else {
+            if (elem.parentElement.nextElementSibling !== null) {
+                console.log('______________йдемо до наступного батька_____________');
+                console.log(elem.parentElement.nextElementSibling.tagName);
+                elem.parentElement.nextElementSibling.style.background = 'silver';
+                return elem.parentElement.nextElementSibling;
+            }
+        }
+    }
+    elem.style.background = 'yellow';
+    return elem;
+}
+
+let prevElement = function (elem) {
+    elem.style.background = '';
+
+    if (elem.previousElementSibling !== null) {
+        console.log(elem.tagName, elem.innerText, ' ---до попереднього елемента');
+        elem.previousElementSibling.style.background = 'silver';
+        return elem.previousElementSibling;
+    } else if (!elem.parentElement.isSameNode(firstElement)) {
+        if (elem.parentElement.previousElementSibling !== null) {
+            if (elem.parentElement.previousElementSibling.lastElementChild !== null) {
+                console.log('______________до останньої дитини попереднього батька_____________');
+                console.log(elem.parentElement.previousElementSibling.tagName);
+                elem.parentElement.previousElementSibling.lastElementChild.style.background = 'silver';
+                return elem.parentElement.previousElementSibling.lastElementChild;
+            }
+        } else {
+            console.log('______________йдемо до батька_____________');
+            console.log(elem.parentElement.tagName);
+            elem.parentElement.style.background = 'silver';
+            return elem.parentElement;
+        }
+    }
+    elem.parentElement.style.background = 'yellow';
+    return elem.parentElement;
+}
+
+
+nextBtn.onclick = () => {
+    currentElement = nextElement(currentElement);
+}
+prevBtn.onclick = () => {
+    if (currentElement !== firstElement) {
+        currentElement = prevElement(currentElement);
     }
 }
-let currentElement= {};
-currentElement=nextElement(elementDOM);
-console.log(currentElement);
 
-
+// - Напишите «Карусель» – ленту изображений, которую можно листать влево-вправо нажатием на стрелочки.
 
