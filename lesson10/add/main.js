@@ -144,6 +144,7 @@ checkAddress.onclick = () => {
 }
 tblBuild();
 
+
 // *****(Прям овердоз с рекурсией) Создать функцию которая принимает какой-либо элемент DOM-структуры .Функция создает в боди 2 кнопки (назад/вперед)
 // при нажатии вперед, вы переходите к дочернему элементу, при еще одном нажатии на "вперед", вы переходите к следующему дочернему элементу (лежащему на одном уровне)
 // НО если у (какого-либо)дочеренего элемента есть дети, то нажатие "вперед" позволяет нам войти внутрь элемента и  выводит первого ребенка. и тд.
@@ -178,18 +179,13 @@ let nextElement = function (elem) {
 
     if (elem.firstElementChild !== null) {
         elem.firstElementChild.style.background = 'silver';
-        console.log(elem.tagName, ' ---має дітей');
-        console.log(elem.firstElementChild.tagName, '--- перша дитина');
         return elem.firstElementChild;
     } else {
         if (elem.nextElementSibling !== null) {
-            console.log(elem.tagName, elem.innerText, ' ---до наступного елемента');
             elem.nextElementSibling.style.background = 'silver';
             return elem.nextElementSibling;
         } else {
             if (elem.parentElement.nextElementSibling !== null) {
-                console.log('______________йдемо до наступного батька_____________');
-                console.log(elem.parentElement.nextElementSibling.tagName);
                 elem.parentElement.nextElementSibling.style.background = 'silver';
                 return elem.parentElement.nextElementSibling;
             }
@@ -199,41 +195,126 @@ let nextElement = function (elem) {
     return elem;
 }
 
+
+let childStatus = false; // флажок, якщо перехід від останнього блоку
+
 let prevElement = function (elem) {
     elem.style.background = '';
 
-    if (elem.previousElementSibling !== null) {
-        console.log(elem.tagName, elem.innerText, ' ---до попереднього елемента');
+    // в елемента є діти
+    if (elem.lastElementChild !== null && childStatus===false) {
+        elem.lastElementChild.style.background = 'silver';
+        return elem.lastElementChild;
+    } else if
+
+        //якщо існує сусід prev і дітей нема
+    (elem.previousElementSibling !== null) {
+        childStatus=false;
         elem.previousElementSibling.style.background = 'silver';
         return elem.previousElementSibling;
-    } else if (!elem.parentElement.isSameNode(firstElement)) {
-        if (elem.parentElement.previousElementSibling !== null) {
-            if (elem.parentElement.previousElementSibling.lastElementChild !== null) {
-                console.log('______________до останньої дитини попереднього батька_____________');
-                console.log(elem.parentElement.previousElementSibling.tagName);
-                elem.parentElement.previousElementSibling.lastElementChild.style.background = 'silver';
-                return elem.parentElement.previousElementSibling.lastElementChild;
-            }
-        } else {
-            console.log('______________йдемо до батька_____________');
-            console.log(elem.parentElement.tagName);
-            elem.parentElement.style.background = 'silver';
-            return elem.parentElement;
-        }
+    } else {
+        childStatus=true;
+        elem.parentElement.style.background = 'silver';
+        return elem.parentElement;
     }
-    elem.parentElement.style.background = 'yellow';
-    return elem.parentElement;
 }
-
-
 nextBtn.onclick = () => {
     currentElement = nextElement(currentElement);
 }
 prevBtn.onclick = () => {
     if (currentElement !== firstElement) {
         currentElement = prevElement(currentElement);
+    } else {
+        currentElement.style.background = 'yellow';
     }
 }
+
+
+// - Напишите «Карусель» – ленту изображений, которую можно листать влево-вправо нажатием на стрелочки.
+// let simpsons = [
+//     {
+//         name: 'Bart',
+//         surname: 'Simpson',
+//         age: 10,
+//         info: 'Бартолом\'ю ДжоДжо «Барт» Сімпсон (англ. Bartholomew JoJo «Bart» Simpson) — один із головних героїв мультиплікаційного серіалу Сімпсони. Барт — найстарша дитина Гомера і Мардж Сімпсон. У нього також є дві молодші сестри — Ліса і Меґґі. Барт є втіленням образу бешкетника та посереднього учня у школі. Разом зі своїм батьком Барт є одним із найвідоміших персонажів у цьому серіалі.',
+//         photo: 'https://upload.wikimedia.org/wikipedia/uk/a/aa/Bart_simpson.png'
+//     },
+//     {
+//         name: 'Homer',
+//         surname: 'Simpson',
+//         age: 40,
+//         info: 'Гомер Джей Сімпсон (англ. Homer Jay Simpson) — один із головних героїв мультсеріалу «Сімпсони». Гомер — грубий і неввічливий батько родини, він має очевидні вади: товстий, лисий і не дуже розумний. Нерідко він поводиться як блазень, абсурдно, егоїстично і нетактовно, але все ж лишається симпатичним.',
+//         photo: 'http://upload.wikimedia.org/wikipedia/en/0/02/Homer_Simpson_2006.png'
+//     },
+//     {
+//         name: 'Marge',
+//         surname: 'Simpson',
+//         age: 38,
+//         info: 'Ма́рджори Жакли́н «Мардж» Си́мпсон (в девичестве Бувье́) (англ. Marjorie Jacqueline «Marge» Simpson) — постоянный персонаж мультипликационного сериала «Симпсоны», её озвучивает Джулия Кавнер. Обычно носит зелёное платье, красные балетки, на шее — ожерелье из искусственного жемчуга и ездит на оранжевом универсале. У неё шикарные синие волосы, которые она обычно собирает в очень высокую причёску. Глаза цвета ореха (19s6e). Основное занятие — домохозяйка, большую часть времени проводит в заботе о доме, детях и Гомере. Образ Мардж копирует стереотип провинциальной американской домохозяйки 50-х годов. Мардж — единственный член семьи, посещающий церковь добровольно. Старается поддерживать нравственность не только своей семьи, но и всего города. Отлично готовит, особенно славятся её свиные отбивные и зефир. Любимое блюдо — лапша с маслом.',
+//         photo: 'https://upload.wikimedia.org/wikipedia/ru/0/0b/Marge_Simpson.png'
+//     },
+//     {
+//         name: 'Lisa',
+//         surname: 'Simpson',
+//         age: 9,
+//         info: 'Ли́за Мари́ Си́мпсон (англ. Lisa Marie Simpson) — героиня мультипликационного сериала «Симпсоны». Средний ребёнок в семье, восьмилетняя девочка, выделяющаяся среди остальных Симпсонов прежде всего своим умом и рассудительностью.',
+//         photo: 'https://upload.wikimedia.org/wikipedia/ru/e/ec/Lisa_Simpson.png'
+//     },
+//     {
+//         name: 'Maggie',
+//         surname: 'Simpson',
+//         age: 1,
+//         info: 'Ма́ргарет Эвелин «Мэ́гги» Си́мпсон (англ. Margaret Evelyn “Maggie” Simpson) — персонаж мультсериала «Симпсоны». Впервые появилась на телевидении в шоу Трейси Ульман, в короткометражке Good Night (англ.)русск. 19 апреля 1987 года. Мэгги была придумана и разработана карикатуристом Мэттом Грейнингом, пока он ждал встречи с Джеймсом Л. Бруксом. Названа в честь младшей сестры Грейнинга. После появления в шоу Трейси Ульман, через три года семья Симпсонов получила собственный сериал на телеканале Fox, дебют произошёл 17 декабря 1989 года.',
+//         photo: 'https://upload.wikimedia.org/wikipedia/ru/9/9d/Maggie_Simpson.png'
+//     },
+// ];
+//
+// let galleryWrap = document.createElement("div");
+// document.body.appendChild(galleryWrap);
+// galleryWrap.classList.add('wrap');
+// let btnWrap = document.createElement('div');
+// let galleryWindow = document.createElement('div');
+// galleryWindow.classList.add('gallery-wrap');
+//
+//
+// let prevImgBtn = document.createElement("button");
+// let nextImgBtn = document.createElement("button");
+// prevImgBtn.innerText = 'previous image';
+// nextImgBtn.innerText = 'next image';
+// prevImgBtn.classList.add('buttons');
+// nextImgBtn.classList.add('buttons');
+//
+// btnWrap.append(prevImgBtn, nextImgBtn)
+// galleryWrap.append(galleryWindow, btnWrap);
+//
+// for (const simpson of simpsons) {
+//     let imageEl = document.createElement("img");
+//     imageEl.classList.add('img-none', 'img-all');
+//     imageEl.src = simpson.photo;
+//     imageEl.alt = simpson.name
+//     galleryWindow.appendChild(imageEl);
+// }
+//
+// let i = 0;
+// let imgArr = document.getElementsByClassName('img-all');
+//
+// prevImgBtn.onclick = () => {
+//     currentImage(i);
+//     console.log(i)
+//     if (i > 0) i -= 1; else i = imgArr.length-1;
+//     console.log(i)
+//     currentImage(i);
+// }
+// nextImgBtn.onclick = () => {
+//     currentImage(i);
+//     if (i < imgArr.length - 1) i += 1; else i = 0;
+//     currentImage(i);
+// }
+//
+// let currentImage = (i) => {
+//     imgArr[i].classList.toggle('img-none');
+// }
+// currentImage(i);
 
 
 // Завдання важке для розуміння, але дуже легке в реалізації. Тут треба буде погуглити
