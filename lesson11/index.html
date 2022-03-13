@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<!-- обєкти location, history-->
+
+<button onclick="(function (){
+    // location.href='https://owu.com.ua'
+    // location.reload(); // можна перезавантажити сторінку, є ще інші команти, наприклад додати в улюблені
+    // обєкт history для переходів по історії
+    // history.back();
+    // history.go();
+    // history.forward();
+}())">
+    go to site
+</button>
+<script>
+    // console.log(window.location); // інфа про сторінку
+    // location.href='https://owu.com.ua'     // можна звернутися  і тоді завантажиться інша сторінка
+    // можна це положити в onclick button
+
+    // json
+    // щоб перетворити обєкт в json обєкт
+    let user= {name:'vova',age:31,status : true};
+    let user$= '{"name":"vova","age":31,"status":true}';
+    //або
+    let user2$= JSON.stringify(user);
+    console.log(user$,user2$);
+
+
+
+
+
+</script>
+</body>
+</html>
