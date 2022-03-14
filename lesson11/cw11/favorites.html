@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Favorites</title>
+</head>
+<body>
+<script>
+    let favoritesArr = JSON.parse(localStorage.getItem('favoritesKey')) || [];
+    console.log(favoritesArr)
+    for (const el of favoritesArr) {
+        let divFavorites = document.createElement('div');
+
+        divFavorites.innerText = `name: ${el.name} \n age: ${el.age} \n status: ${el.status}`;
+        document.body.append(divFavorites, document.createElement("hr"));
+    }
+    let homeBtn = document.createElement('button');
+    homeBtn.innerHTML = `<a href="./index.html" style="text-decoration: none">home</a>`;
+    document.body.appendChild(homeBtn);
+
+    let clearBtn = document.createElement('button');
+    clearBtn.innerText = 'clear';
+    clearBtn.style.margin = '5px';
+    clearBtn.onclick = () => {
+        localStorage.clear();
+        location.reload();
+    }
+    document.body.appendChild(clearBtn);
+
+</script>
+</body>
+</html>

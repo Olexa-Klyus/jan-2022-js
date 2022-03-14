@@ -8,9 +8,42 @@
 
 <!-- -створити форму з інпутами для name та age.-->
 <!--При відправці форми записати об'єкт в localstorage-->
+<form action="" name="userForm">
+    <label>Name
+        <input type="text" name="nameInput" placeholder="enter name">
+    </label>
+    <label>Age
+        <input type="number" name="ageInput" placeholder="enter age">
+    </label>
+    <button id="userBtn">send userForm</button>
+    <hr>
+</form>
 
 <!-- -створити форму з інпутами для model,type та volume автівки.-->
 <!--при відпарвці форми об'єкти зберігаються в масиві в локальному сховищі.-->
-
+<form action="" name="carForm">
+    <label>Car Model
+        <input type="text" name="carModel">
+    </label>
+    <label>Car Type
+        <input type="text" name="carType">
+    </label>
+    <label>Car Volume
+        <input type="text" name="carVolume">
+    </label>
+    <button id="carBtn">send carForm</button>
+</form>
+<script>
+    let userForm=document.forms.userForm;
+    userForm.onsubmit = () => {
+        let userObj = {name: userForm.nameInput.value, age: userForm.ageInput.value}
+        localStorage.setItem('key', JSON.stringify(userObj));
+    }
+    let carForm=document.forms.carForm;
+        carForm.onsubmit=()=>{
+            let carObj = {model: carForm.carModel.value, type: carForm.carType.value,volume:carForm.carVolume.value};
+            localStorage.setItem('carKey', JSON.stringify(carObj));
+        }
+</script>
 </body>
 </html>

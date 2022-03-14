@@ -11,15 +11,15 @@
 
 <!-- обєкти location, history-->
 
-<button onclick="(function (){
-    // location.href='https://owu.com.ua'
-    // location.reload(); // можна перезавантажити сторінку, є ще інші команти, наприклад додати в улюблені
-    // обєкт history для переходів по історії
-    // history.back();
-    // history.go();
-    // history.forward();
-}())">
-    go to site
+<!--<button onclick="(function (){-->
+<!--    // location.href='https://owu.com.ua'-->
+<!--    // location.reload(); // можна перезавантажити сторінку, є ще інші команти, наприклад додати в улюблені-->
+<!--    // обєкт history для переходів по історії-->
+<!--    // history.back();-->
+<!--    // history.go();-->
+<!--    // history.forward();-->
+<!--}())">-->
+<!--    go to site-->
 </button>
 <script>
     // console.log(window.location); // інфа про сторінку
@@ -27,17 +27,103 @@
     // можна це положити в onclick button
 
     // json
-    // щоб перетворити обєкт в json обєкт
-    let user= {name:'vova',age:31,status : true};
-    let user$= '{"name":"vova","age":31,"status":true}';
-    //або
-    let user2$= JSON.stringify(user);
-    console.log(user$,user2$);
+    // // щоб перетворити обєкт в json обєкт
+    //let user= {name:'vova',age:31,status : true};
+    // let user$= '{"name":"vova","age":31,"status":true}';
+    // //або
+    // let user2$= JSON.stringify(user);
+    // console.log(user$,user2$);
+    // // в зворотньому напрямку json обєкта в обєкт js
+    // console.log(JSON.parse(user2$));
 
+    //storage - види сховищ session (в межах сторінки), cookies (в межах сайту), local (в межах браузера)
 
+    // localStorage.setItem('key1', 'value1');
+    // console.log(localStorage.getItem('key1'));
+    // console.log(localStorage.key(0)); //
+    // console.log(localStorage.length); //
+    // localStorage.clear(); //
 
+    // let users = [
+    //     {id:1,name: 'petya', age: 30, status: true},
+    //     {id:2,name: 'kolya', age: 29, status: true},
+    //     {id:3,name: 'olya', age: 28, status: false},
+    //     {id:4,name: 'vasya', age: 31, status: false},
+    //     {id:5,name: 'max', age: 30, status: true},
+    //     {id:6,name: 'anya', age: 31, status: false}
+    //     ];
 
+    // для збереження масиву чи об'єкта в localStorage треба використати JSON
+    // localStorage.setItem('user',JSON.stringify({"name":"vova","age":31,"status":true}));
+    // console.log(JSON.parse(localStorage.getItem('user')));
+    // можемо записати кожен елемент окремо, але так не роблять
+    // localStorage.clear();
+    // for (const user of users) {
+    //     localStorage.setItem(`user-${user.id}`,JSON.stringify(user));
+    // }
+    // for (let i = 0; i < localStorage.length; i++) {
+    //     let userJSON = localStorage.getItem(localStorage.key(i));
+    //     console.log(JSON.parse(userJSON));
+    // }
+    // // краще записати цілий об'єкт як рядок
+    // localStorage.setItem('users',JSON.stringify(users));
+    // // потім отримати і робити різні маніпуляції
+    // let users2=JSON.parse(localStorage.getItem('users')).filter(value => value.status);
+    // console.log(users2);
 
+    // //є ще куки, в яких переважно зберігають токен
+    // document.cookie='name=kokos';
+    // document.cookie='name2=vova';
+    // console.log(document.cookie); //виведе кукі через крапку з комою
+    // // щоб дістати значення кукі, потрібно сплітувати по ";"
+    // let firstCookie=document.cookie.split(';')[0];
+    // console.log(firstCookie);
+    // // потім знову по знаку "="
+
+    // // цикл для переводу кукі в масив
+    // let cookies2=document.cookie.split(';');
+    // let cookiesObj={};
+    // for (let i = 0; i < cookies2.length; i++) {
+    //     let cookieEl=cookies2[i].split('=');
+    //     cookiesObj[cookieEl[0]]=cookieEl[1];
+    // }
+    // console.log(cookiesObj);
+    //використовуються ще префікси які показують скільки мілісекунд чи секунд живе кука
+    // document.cookie='max-age=222';
+
+    // // цей код показує місцеположення
+    // navigator.geolocation.getCurrentPosition(({coords})=>console.log(coords));
+    // // або переписав простою функцією
+    // navigator.geolocation.getCurrentPosition(function ({coords}){
+    //     console.log(coords)});
+
+    // //або вивести відеопотік
+    // navigator.mediaDevices.getUserMedia({video:true})
+    //     .then(stream=>{
+    //     let videoPlayer=document.getElementById('videoplayer');
+    //     videoPlayer.srcObject=stream;
+    //     videoPlayer.play();
+    // });
+
+    // //як можна витягнути з URL ijt параметр
+    // let siteUrl=location.href;
+    // console.log(siteUrl);
+    // //є спеціальна API і спеціальний клас URL, який дає багато плюсів при роботі з URL
+    // let url =new URL(siteUrl);
+    // console.log(url);
+    // let ijt=url.searchParams.get('_ijt');
+    // console.log(ijt);
+
+    // // як передати інфу через URL запит а не через локал сторідж
+    // for (const user of users) {
+    //     let divUser=document.createElement('div');
+    //     divUser.innerText=user.name;
+    //     let anchor= document.createElement('a');
+    //     anchor.href=`users-details.html?pd=${JSON.stringify(user)}`;
+    //     anchor.innerText=' details';
+    //     divUser.append(anchor);
+    //     document.body.append(divUser);
+    // }
 
 </script>
 </body>
