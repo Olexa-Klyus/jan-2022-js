@@ -39,7 +39,7 @@
                     popup.style.left = `${postDiv.offsetLeft}px`;
                     popup.innerHTML = `<h3>id: ${post.id}</h3><h4>title: ${post.title}</h4><p>Body: ${post.body}</p>`;
                     wrap.appendChild(popup);
-                    popup.onmouseout = () => {
+                    popup.onmouseleave = () => {
                         popup.remove();
                     }
                 }
@@ -74,10 +74,10 @@
                     popup.style.top = `${commentDiv.offsetTop}px`;
                     popup.style.left = `${commentDiv.offsetLeft}px`;
                     popup.innerHTML = `<h4>postid: ${comment.postId}</h4><h4>id: ${comment.id}</h4>
-                                    <h4>name: ${comment.name}</h4><h4>email: ${comment.email}</h4>
+                                    <h4>name: ${comment.name}</h4><h5>email: ${comment.email}</h5>
                                     <p>body: ${comment.body}</p>`;
                     wrap.appendChild(popup);
-                    popup.onmouseout = () => {
+                    popup.onmouseleave = () => {
                         popup.remove();
                     }
                 }
