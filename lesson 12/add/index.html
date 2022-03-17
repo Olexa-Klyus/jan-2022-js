@@ -1,15 +1,124 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
 </head>
-<body>
 
-<!--1.-->
-<!--Отримати відповідь з цього ресурсу відповідь, та вивести в документ як в прикладі на занятті-->
-<!--https://jsonplaceholder.typicode.com/users-->
-<!--кожному елементу юзера створити кнопку, при клику на яку в окремий блок виводяться всі пости поточного юзера.-->
-<!--Кожному елементу post створити кнопку, при клику на яку в окремий блок виводяться всі коментарі поточного поста-->
+<div class="wrapper">
+    <div class="user-wrap"></div>
+</div>
+
+
+<body>
+<script>
+    // 1.
+    // Отримати відповідь з цього ресурсу відповідь, та вивести в документ як в прикладі на занятті
+    // https://jsonplaceholder.typicode.com/users
+    // кожному елементу юзера створити кнопку, при клику на яку в окремий блок виводяться всі пости поточного юзера.
+    // Кожному елементу post створити кнопку, при клику на яку в окремий блок виводяться всі коментарі поточного поста
+
+    let userWrap = document.getElementsByClassName('user-wrap')[0];
+
+    fetch('https://jsonplaceholder.typicode.com/users')
+        .then((data) => data.json())
+        .then(usersArr => {
+                for (const user of usersArr) {
+                    let userDiv = document.createElement('div');
+                    userDiv.classList.add('user');
+                    userDiv.innerHTML =
+                        `<div><h5>id: ${user.id} , ${user.username}</h5></div>
+                     <div><h4> ${user.name}</h4></div>
+                     <div><h4> ${user.email}</h4></div>
+                     <div class="user-address">address :
+                        <h4> ${user.address.city}</h4>
+                        <h4> ${user.address.street}</h4>
+                        <h4> ${user.address.suite}</h4>
+                        <h5> ${user.address.zipcode}</h5>
+                        <div class="user-geo"><h5>lat : ${user.address.geo.lat}  lng : ${user.address.geo.lng}</h5></div>
+                     </div>
+                     <div><h4> ${user.website}</h4></div>
+                     <div><h4>${user.phone}</h4></div>`;
+
+                    let postBtn = document.createElement('button');
+                    postBtn.id = 'postBtn';
+                    postBtn.innerHTML = `<h3>POSTS</h3>`;
+                    userDiv.appendChild(postBtn);
+                    userWrap.appendChild(userDiv);
+                    postBtn.onclick = () => {
+
+                        fetch('https://jsonplaceholder.typicode.com/users/1/posts')
+                            .then((data) => data.json())
+                            .then(postsArr => {
+                                    let postWrap = document.createElement('div');
+                                    postWrap.classList.add('post-wrap');
+                                    postWrap.style.top = userDiv.offsetTop + 'px';
+                                    userWrap.appendChild(postWrap);
+
+                                    if (userDiv.offsetLeft + postWrap.clientWidth > userWrap.clientWidth) {
+                                        postWrap.style.left = (userWrap.clientWidth - postWrap.clientWidth) + 'px';
+                                    } else postWrap.style.left = userDiv.offsetLeft + 'px';
+
+                                    for (const post of postsArr) {
+                                        let postDiv = document.createElement('div');
+                                        postDiv.classList.add('post');
+                                        postDiv.innerHTML =
+                                            `<div><h5>id: ${post.id} , userId: ${post.userId}</h5></div>
+                                            <div class="title"><h4> ${post.title}</h4></div>
+                                            <div class="post-body"><p>${post.body}</p></div>`;
+
+                                        let commentBtn = document.createElement('button');
+                                        commentBtn.id = 'commentBtn';
+                                        commentBtn.innerText = 'COMMENTS';
+                                        postDiv.appendChild(commentBtn);
+                                        postWrap.appendChild(postDiv);
+                                        commentBtn.onclick = () => {
+                                            fetch('https://jsonplaceholder.typicode.com/posts/' + post.id + '/comments')
+                                                .then((data) => data.json())
+                                                .then(dataArr => {
+                                                    let commentWrap = document.createElement('div');
+                                                    commentWrap.classList.add('comment-wrap');
+                                                    commentWrap.style.top = postDiv.offsetTop + 'px';
+                                                    postWrap.appendChild(commentWrap);
+
+                                                    if (postDiv.offsetLeft + commentWrap.clientWidth > postWrap.clientWidth) {
+                                                        commentWrap.style.left = (postWrap.clientWidth - commentWrap.clientWidth) + 'px';
+                                                    } else commentWrap.style.left = postDiv.offsetLeft + 'px';
+
+                                                    for (const comment of dataArr) {
+                                                        let popup = document.createElement('div');
+                                                        popup.classList.add('comment');
+                                                        popup.innerHTML =
+                                                            `<div><h4>postid: ${comment.postId}</h4><h4>id: ${comment.id}</h4></div>
+                                                            <div><h5>email: ${comment.email}</h5></div>
+                                                            <div><p>body: ${comment.body}</p></div>
+                                                            <div><h4>name: ${comment.name}</h4></div>`
+
+                                                        commentWrap.appendChild(popup);
+                                                        commentWrap.onmouseleave = () => {
+                                                            commentWrap.remove();
+                                                        }
+                                                    }
+                                                })
+                                        }
+                                        postWrap.onmouseleave = () => {
+                                            postWrap.remove();
+                                        }
+
+
+                                    }
+                                }
+                            )
+
+                    }
+                }
+            }
+        )
+
+</script>
 </body>
 </html>

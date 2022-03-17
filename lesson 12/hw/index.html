@@ -32,7 +32,7 @@
                 postDiv.classList.add('post');
                 postDiv.innerHTML = `<h3>id: ${post.id}</h3><h4>title: ${post.title}</h4><p>Body: ${post.body}</p>`;
                 wrap.appendChild(postDiv);
-                postDiv.onclick = (e) => {
+                postDiv.onclick = () => {
                     let popup = document.createElement('div');
                     popup.classList.add('popup');
                     popup.style.top = `${postDiv.offsetTop}px`;
@@ -68,7 +68,7 @@
                 txtDiv.innerHTML = `<h4>name: ${comment.name}</h4><h5>email: ${comment.email}</h5>
                                     <p>body: ${comment.body}</p>`;
                 wrap.appendChild(commentDiv);
-                commentDiv.onclick = (e) => {
+                commentDiv.onclick = () => {
                     let popup = document.createElement('div');
                     popup.classList.add('popup-comment');
                     popup.style.top = `${commentDiv.offsetTop}px`;

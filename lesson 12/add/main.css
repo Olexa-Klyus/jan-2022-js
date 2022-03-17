@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+}
+
+.wrapper {
+    display: flex;
+    min-width: 670px;
+}
+
+.user-wrap {
+    display: flex;
+    width: 1120px;
+    flex-wrap: wrap;
+}
+
+.post-wrap {
+    display: flex;
+    width: 670px;
+    background: white;
+    flex-wrap: wrap;
+    position: absolute;
+}
+
+.comment-wrap {
+    display: flex;
+    background: #cac6c6;
+    width: 550px;
+    flex-wrap: wrap;
+    position: absolute;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    width: 200px;
+    height: 320px;
+    background: #d5bb56;
+    border: 1px solid darkblue;
+    border-radius: 5px;
+    box-shadow: 6px 6px 5px 0px rgba(0, 0, 0, 0.75);
+    margin: 5px;
+    padding: 5px;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    width: 200px;
+    height: 250px;
+    background: silver;
+    border: 1px solid darkblue;
+    border-radius: 5px;
+    box-shadow: 6px 6px 5px 0px rgba(0, 0, 0, 0.75);
+    margin: 5px;
+    padding: 5px;
+}
+
+.comment {
+    width: 250px;
+    height: 300px;
+    border: 2px solid gray;
+    border-radius: 5px;
+    background: cornsilk;
+    flex-direction: column;
+    margin: 5px;
+    padding: 5px;
+}
+
+.comment div {
+    margin: 5px;
+}
+
+.post:hover {
+    transform: translate(-1%, -1%);
+}
+
+.post div {
+    width: 100%;
+}
+
+.post h5 {
+    background: cornflowerblue;
+}
+
+.post h4 {
+    height: 55px;
+    overflow: hidden;
+}
+
+.post-body {
+    height: 135px;
+    text-align: justify;
+    overflow: hidden;
+}
+
+#commentBtn {
+    width: 105px;
+    background: #d5bb56;
+    margin-top: 10px;
+}
+
+.user-address {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid gray;
+    margin: 10px 0;
+}
+.user-address h4{
+    margin: 5px;
+}
+.user-geo {
+    color: darkblue;
+    background: cornflowerblue;
+}
+
+#postBtn {
+    margin-top: 20px;
+    width: 80px;
+    border-radius: 5px;
+}
+
+#postBtn:hover {
+    transform: translate(-1%, -1%);
+    box-shadow: 6px 6px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+#commentBtn:hover {
+    box-shadow: 6px 6px 5px 0px rgba(0, 0, 0, 0.75);
+}
