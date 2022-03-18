@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<script>
+    //call()
+    // делегування повноважень
+    //щоб якийсь обєкт з певною поведінкою міг виконати дію від імені іншого об'єкта
+    let user = {
+        name: 'vova',
+        greeting: function () {
+            console.log(`user : hello my name is ${this.name}`);
+        }
+    };
+    user.greeting();
+    //call()-можна викликати цей user за допомогою call(), яка передасть туди інше значення
+    let user2 = {name: 'kokos'};
+    user.greeting.call(user2);
+
+    //варіант 2 - якщо у функцію передається додаткове значення через rest argument
+    //можна передавати багато значень
+    let userNew = {
+        name: 'vasya',
+        greeting: function (msg) {
+            console.log(`userNew : ${msg} hello my name is ${this.name}`);
+        }
+    };
+    userNew.greeting('hi!!');
+    let user3 = {name: 'olya'};
+    userNew.greeting.call(user3, 'Hi!');
+
+    //apply()
+    // варіант 3 - якщо є декілька внутрішніх функцій.
+    //і потрібно передати декілька додаткових значень через rest argument
+    //можна передавати багато значень
+    let userNew2 = {
+        name: 'roma',
+        greeting: function (msg) {
+            console.log(`userNew2 : ${msg} hello my name is ${this.name}`);
+        },
+        foobar: function (a, b, c) {
+            console.log(a,b,c);
+        }
+    };
+    userNew2.greeting('Hi!!!!');
+    let user4 = {name: 'petya'};
+    userNew2.greeting.call(user4, 'Hi-hi!');
+    userNew2.foobar('aaa','bbb','ccc');
+    //але якщо цей foobar має багато аргументів,
+    // а ми не хочемо кожен раз їх всі послідовно передавати?
+    //для цього є функція applay()
+    //яка першим аргументом приймає контекст this, тобто від імені кого це буде виконуватися
+    //а другим аргументом є масив, який вона розкладає потім послідовно в аргументи
+    //при тому якщо передати менше аргументів, то незаповнені будуть undefined
+    let args=['vvvv','aaaaaaawwwww','gggggggggg'];
+    let user5='USER5';
+    userNew2.foobar.apply(user5,args);
+
+    //bind
+    //копіює функціонал внутрішньої функції в новий об'єкт, який потім можна юзати
+    let userNew3 = {
+        name: 'vasya',
+        greeting: function (msg) {
+            console.log(`userNew3 : ${msg} hello my name is ${this.name}`);
+        }
+    };
+    let user6 = {name: 'olena'};
+    let greeting=userNew3.greeting.bind(user6,'my message : ');
+    greeting();
+    //або можна ще так - тупо скопіювати функцію, підмінивши контекст this, і передавати їй аргументи
+    let greeting2=userNew3.greeting.bind(user6);
+    greeting2('aloha!!!');
+
+    //концепція наслідування
+    // питання зі співбесіди - як зробити наслідування, якщо класи, наприклад, заборонені в проекті ?
+    function User (name, surname){
+        this.name=name;
+        this.surname=surname;
+    }
+    function Customer (name,surname,password){
+        this.name=name;
+        this.surname=surname;
+        this.password=password;
+    }
+    //як зробити, щоб Customer брав name, surname від User
+    function Customer1 (name,surname,password){
+        User.apply(this,[name, surname]);
+        this.password=password;
+    }
+    console.log(new Customer1('aaa','sss','ddd'));
+
+    //або передати в User за допомогою arguments, але третій аргумент втратиться,
+    //бо User приймає тільки 2 аргументи
+    function Customer2 (name,surname,password){
+        User.apply(this,arguments);
+        this.password=password;
+    }
+    console.log(new Customer2('aaa','sss','ddd'));
+
+</script>
+</body>
+</html>
