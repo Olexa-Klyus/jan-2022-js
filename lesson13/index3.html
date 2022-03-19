@@ -8,6 +8,54 @@
     <title>Document</title>
 </head>
 <body>
+<script>
 
+    //асинхронні операції працюють поза часом
+    //setTimeout
+
+    // let x = 0;
+    // setTimeout(() => {
+    //     console.log('hello');
+    //     x = 1000;
+    // }, 2000);
+    // console.log(x); //буде 0
+
+    //всередині асинхронної функції зовнішню змінну змінити не можна,
+    // бо це два паралельні процеси
+
+    // console.log('start');
+    // setTimeout(() => {
+    //     let count = 0;
+    //     console.log('do1', count);
+    //     setTimeout(() => {
+    //         count += 1;
+    //         console.log('do2', count);
+    //         setTimeout(() => {
+    //             count += 1;
+    //             console.log('do3', count);
+    //         }, 2000)
+    //     }, 2000)
+    // }, 1000)
+    // console.log('end');
+
+    // це так зване callback hell, з яким важко працювати
+    //якщо, наприклад, потрібно вантажити 100 картинок.
+
+    //для такого існують Promise з resolve, reject
+    //ми самостійно обираємо, коли спрацьовує resolve а коли reject
+    let promise = new Promise((resolve, reject) => {
+        let counter = 0;
+        setTimeout(() => {
+            console.log('do', counter);
+            counter+=1;
+            resolve(counter);
+        },1000)
+    });
+
+        promise.then((value) => {
+            console.log(value);
+        })
+
+</script>
 </body>
 </html>

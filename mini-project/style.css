@@ -1,0 +1,106 @@
+:root {
+    --userDivWidth: 200px;
+    --postDivWidth: 120px;
+    --commentWidth: 250px;
+}
+
+.users-wrap, .posts-wrap, .comment-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.users-wrap {
+    min-width: 410px;
+}
+
+.posts-wrap {
+    min-width: 620px;
+}
+.comment-wrap{
+    min-width: 300px;
+}
+.user-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: var(--userDivWidth);
+    height: 150px;
+    background: #d5bb56;
+    margin-top: 20px;
+    margin-left: calc(25% - 0.5 * var(--userDivWidth));
+    margin-right: calc(25% - 0.5 * var(--userDivWidth));
+}
+
+.user-wrap, .user-address {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-width: 410px;
+}
+
+.user-wrap > div > h4 {
+    margin: 10px;
+}
+
+.user-address {
+    background: silver;
+    width: 100%;
+}
+
+.user-wrap {
+    border: 2px solid black;
+}
+
+.post-btn, .user-btn, .post-details-btn {
+    border-radius: 5px;
+    background: #91C9FF;
+    margin: 5px;
+}
+
+.post-btn {
+    width: 90%;
+}
+
+.post-title {
+    width: var(--postDivWidth);
+    height: 150px;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 5px;
+    margin-left: calc(10% - 0.5 * var(--postDivWidth));
+    margin-right: calc(10% - 0.5 * var(--postDivWidth));
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 1px solid black;
+}
+.post{
+    min-width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0 20px;
+    border: 1px solid gray;
+    background: silver;
+}
+
+.comment {
+    width: var(--commentWidth);
+    height: 400px;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    margin: 10px;
+    padding: 5px;
+    justify-content:space-evenly;
+    text-align: center;
+    border: 1px solid black;
+    background: silver;
+}

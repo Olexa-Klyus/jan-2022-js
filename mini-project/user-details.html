@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Users Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<script>
+
+    let url = new URL(location.href);
+    let user = JSON.parse(url.searchParams.get('user'));
+    console.log(user)
+    if (!user) {
+        user = JSON.parse(localStorage.getItem('user'));
+    }
+
+    let userDiv = document.createElement('div');
+    userDiv.classList.add('user-wrap');
+    userDiv.innerHTML =
+        `<div><h4>id: ${user.id} , ${user.username}</h4></div>
+                     <div><h4> ${user.name}</h4></div>
+                     <div><h4> ${user.email}</h4></div>
+                     <div class="user-address">address :
+                        <div> ${user.address.city}</div>
+                        <div> ${user.address.street}</div>
+                        <div> ${user.address.suite}</div>
+                        <div> ${user.address.zipcode}</div>
+                        <div class="user-geo"><h5>lat : ${user.address.geo.lat}  lng : ${user.address.geo.lng}</h5></div>
+                     </div>
+                     <div><h4> ${user.website}</h4></div>
+                     <div><h4>${user.phone}</h4></div>`;
+
+    let postBtn = document.createElement('button');
+    postBtn.innerHTML = `<h4>post of current user</h4>`;
+    postBtn.classList.add('post-btn');
+    postBtn.onclick = () => {
+        postBtn.disabled = true;
+        let postsWrap = document.createElement('div');
+        postsWrap.classList.add('posts-wrap');
+        fetch(`https://jsonplaceholder.typicode.com/users/${user.id}/posts`)
+            .then((data) => data.json())
+            .then(postArr => {
+                for (let i = 0; i < postArr.length; i++) {
+                    let postTitle = document.createElement('div');
+                    postTitle.classList.add('post-title');
+                    postTitle.innerText = (i + 1) + '.  ' + postArr[i].title;
+                    let postDetailsBtn = document.createElement('button');
+                    postDetailsBtn.innerText = 'post details';
+                    postDetailsBtn.classList.add('post-details-btn');
+                    postDetailsBtn.onclick = () => {
+                        localStorage.setItem('post', JSON.stringify(postArr[i]));
+                        location.href = './post-details.html'
+                    }
+                    postTitle.appendChild(postDetailsBtn);
+                    postsWrap.appendChild(postTitle);
+                    document.body.appendChild(postsWrap);
+                }
+            })
+    }
+
+    userDiv.appendChild(postBtn);
+    document.body.appendChild(userDiv);
+
+</script>
+</body>
+</html>

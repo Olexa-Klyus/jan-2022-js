@@ -9,15 +9,15 @@ console.log(idRules.innerText);
 console.log(idRules.innerHTML);
 
 // -- замініть текст параграфа з id 'content' на будь-який інший
-idContent.innerText='new text idContent- замінив текст параграфа з id \'content\' на будь-який інший.';
+idContent.innerText='new mini-project idContent- замінив текст параграфа з id \'content\' на будь-який інший.';
 console.log(idContent.innerText);
-idContent.innerHTML='<b><i>new text idContent(Форматований)- замінив текст параграфа з id \'content\' на будь-який інший.</i></b>'
+idContent.innerHTML='<b><i>new mini-project idContent(Форматований)- замінив текст параграфа з id \'content\' на будь-який інший.</i></b>'
 console.log(idContent.innerText);
 
 // -- замініть текст параграфа з id 'rules' на будь-який інший
-idRules.innerText='new text idRules - замінив текст параграфа з id \'rules\' на будь-який інший.'
+idRules.innerText='new mini-project idRules - замінив текст параграфа з id \'rules\' на будь-який інший.'
 console.log(idRules.innerText);
-idRules.innerHTML='<b><i>new text - rules (Форматований) замінив текст параграфа з id \'rules\' на будь-який інший.</i></b>'
+idRules.innerHTML='<b><i>new mini-project - rules (Форматований) замінив текст параграфа з id \'rules\' на будь-який інший.</i></b>'
 console.log(idRules.innerText);
 
 // -- змініть кожному елементу колір фону на червоний

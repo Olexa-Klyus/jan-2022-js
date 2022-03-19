@@ -61,7 +61,7 @@ for (const el of subHeaderClassElements) {
 
 // k) отримує елемент з класом content_1 та заміняє в ньому тест на довільний. Текст отримати з prompt()
 let content_1ClassElements = document.getElementsByClassName('content_1');
-let promptText= prompt(`Прошу внести новий текст для ${content_1ClassElements[0].classList.item(0)}`, 'new text');
+let promptText= prompt(`Прошу внести новий текст для ${content_1ClassElements[0].classList.item(0)}`, 'new mini-project');
 content_1ClassElements[0].children[0].innerText =promptText;
 
 // l) отримати елементи p та змінити їм padding на 20px

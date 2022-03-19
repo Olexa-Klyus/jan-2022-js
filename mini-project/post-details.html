@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<script>
+    let post = JSON.parse(localStorage.getItem('post'));
+    let postDiv = document.createElement('div');
+    postDiv.classList.add('post');
+    postDiv.innerHTML =
+        `<div><h5>id: ${post.id} , userId: ${post.userId}</h5></div>
+                                            <div class="title"><h4> ${post.title}</h4></div>
+                                            <div class="post-body"><p>${post.body}</p></div>`;
+
+    document.body.appendChild(postDiv);
+    let commentWrap=document.createElement('div')
+    commentWrap.classList.add('comment-wrap');
+    fetch('https://jsonplaceholder.typicode.com/posts/' + post.id + '/comments')
+        .then((data) => data.json())
+        .then(dataArr => {
+
+            for (const comment of dataArr) {
+                let commentDiv = document.createElement('div');
+                commentDiv.classList.add('comment');
+                commentDiv.innerHTML =
+                    `<div>postid: ${comment.postId}id: ${comment.id}</div>
+                                                            <div>email: ${comment.email}</div>
+                                                            <div>body: ${comment.body}</div>
+                                                            <div>name: ${comment.name}</div>`
+                commentWrap.appendChild(commentDiv);
+            }
+          document.body.appendChild(commentWrap);
+        })
+</script>
+</body>
+</html>

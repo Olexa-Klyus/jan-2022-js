@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>mini-project Users</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="users-wrap"></div>
+<script>
+    let usersWrap = document.getElementsByClassName('users-wrap')[0];
+    fetch('https://jsonplaceholder.typicode.com/users')
+        .then((data) => data.json())
+        .then(usersArr => {
+            for (const user of usersArr) {
+                let userDiv = document.createElement('div');
+                userDiv.classList.add('user-box');
+                userDiv.innerHTML = `<div><h4>${user.id} - ${user.name}</h4></div>`;
+                usersWrap.appendChild(userDiv);
+                let userDetailsBtn = document.createElement('button');
+                userDetailsBtn.classList.add('user-btn');
+
+                let anchor = document.createElement('a');
+                anchor.href = './user-details.html';
+                anchor.href=anchor.href+'?user='+JSON.stringify(user);
+                userDiv.appendChild(anchor);
+                anchor.style.textDecoration = 'none';
+                anchor.innerText = 'user details';
+
+                userDetailsBtn.innerText = 'user details';
+                userDetailsBtn.onclick = () => {
+                    localStorage.setItem('user', JSON.stringify(user));
+                    location.href = './user-details.html'
+                }
+                userDiv.appendChild(userDetailsBtn);
+            }
+        })
+</script>
+</body>
+</html>
